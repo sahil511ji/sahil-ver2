@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turrant.ai — AI-Powered Document Collection via WhatsApp</title>
+  <meta name="description" content="Collect, verify, and process documents through WhatsApp. 99% OCR accuracy, government API verification. Start free trial.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- SVG Icons defined inline for reliability -->
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#dc2626',
+              green: '#059669',
+            }
+          }
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+    ::selection { background: #d1fae5; color: #065f46; }
+    
+    /* Animations */
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse-ring { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    
+    /* WhatsApp specific styles */
+    .whatsapp-bg {
+      background-color: #0b141a;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23111b21' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    /* Gradient text */
+    .text-gradient {
+      background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Glass effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    /* Smooth transitions */
+    .transition-all { transition: all 0.2s ease; }
+    
+    /* Hero gradient */
+    .hero-gradient {
+      background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-200/50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">T</span>
+          </div>
+          <span class="font-semibold text-lg text-gray-900">Turrant.ai</span>
+        </a>
+        
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#how-it-works" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all">How It Works</a>
+          <a href="#industries" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all">Solutions</a>
+          <a href="#pricing" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all">Pricing</a>
+          <a href="#faq" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all">FAQ</a>
+        </div>
+        
+        <!-- CTAs -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Login</a>
+          <a href="#demo" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all">
+            Book Demo <span class="text-gray-400">→</span>
+          </a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <button class="md:hidden p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200">
+        <a href="#how-it-works" class="block py-2 text-gray-600">How It Works</a>
+        <a href="#industries" class="block py-2 text-gray-600">Solutions</a>
+        <a href="#pricing" class="block py-2 text-gray-600">Pricing</a>
+        <a href="#demo" class="block mt-4 w-full text-center px-4 py-2 bg-gray-900 text-white rounded-full">Book Demo</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden hero-gradient">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-4xl mx-auto">
+        <!-- Headline -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1]">
+          Collect Documents on <span class="text-gradient">WhatsApp.</span><br>
+          Validate Instantly. Close Faster.
+        </h1>
+        
+        <!-- Subheadline -->
+        <p class="mt-6 text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          AI-powered document collection that your customers actually complete — 
+          on the app they already use.
+        </p>
+        
+        <!-- CTAs -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#demo" class="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg shadow-gray-900/20">
+            Book a Demo <span>→</span>
+          </a>
+          <a href="#video" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-700 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all">
+            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Watch Demo
+          </a>
+        </div>
+        
+        <!-- Metrics -->
+        <div class="mt-16 grid grid-cols-3 gap-8 max-w-xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-gray-900">80%</div>
+            <div class="mt-1 text-sm text-gray-500">Faster Processing</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-gray-900">60%</div>
+            <div class="mt-1 text-sm text-gray-500">Higher Completion</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-gray-900">99%</div>
+            <div class="mt-1 text-sm text-gray-500">OCR Accuracy</div>
+          </div>
+        </div>
+        
+        <!-- Logo bar -->
+        <div class="mt-16">
+          <p class="text-sm text-gray-400 mb-6">Powering document collection for growing businesses</p>
+          <div class="flex items-center justify-center gap-6 flex-wrap opacity-50 grayscale">
+            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">ABC Finance</span></div>
+            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">XYZ Insurance</span></div>
+            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">PQR Micro</span></div>
+            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">LMN Bank</span></div>
+            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">DEF Corp</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section id="video" class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">See Turrant.ai in Action</h2>
+      </div>
+      <div class="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <button class="group relative w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+            <i data-lucide="play" class="w-8 h-8 text-white ml-1"></i>
+          </button>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm opacity-80">2 min overview</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stop Chasing vs Start Collecting Section -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Transform Your Document Collection</h2>
+        <p class="mt-4 text-lg text-gray-600">From manual chaos to automated efficiency</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Stop Chasing Documents -->
+        <div class="bg-white rounded-2xl p-8 lg:p-10 border border-red-100 shadow-sm">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center">
+              <i data-lucide="x-circle" class="w-6 h-6 text-red-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-red-600">Stop Chasing Documents</h3>
+          </div>
+          
+          <ul class="space-y-5">
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="phone-missed" class="w-4 h-4 text-red-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Endless follow-up calls</h4>
+                <p class="text-gray-600 text-sm mt-1">Wasting hours calling customers who never pick up or respond</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="mail-x" class="w-4 h-4 text-red-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Lost emails and attachments</h4>
+                <p class="text-gray-600 text-sm mt-1">Documents buried in inboxes, wrong formats, corrupted files</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="file-x" class="w-4 h-4 text-red-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Incomplete applications</h4>
+                <p class="text-gray-600 text-sm mt-1">30% of applications abandoned due to document collection friction</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="clock" class="w-4 h-4 text-red-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Manual data entry errors</h4>
+                <p class="text-gray-600 text-sm mt-1">Hours spent re-typing information from documents with mistakes</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Start Collecting Smarter -->
+        <div class="bg-white rounded-2xl p-8 lg:p-10 border border-emerald-100 shadow-sm">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+              <i data-lucide="check-circle" class="w-6 h-6 text-emerald-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-emerald-600">Start Collecting Smarter</h3>
+          </div>
+          
+          <ul class="space-y-5">
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">WhatsApp-first collection</h4>
+                <p class="text-gray-600 text-sm mt-1">Customers respond instantly on the app they use 100+ times daily</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="bot" class="w-4 h-4 text-emerald-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">AI-powered automation</h4>
+                <p class="text-gray-600 text-sm mt-1">Smart agents guide customers through submissions automatically</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="zap" class="w-4 h-4 text-emerald-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Instant verification</h4>
+                <p class="text-gray-600 text-sm mt-1">Real-time OCR and government API checks in seconds</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center mt-0.5">
+                <i data-lucide="trending-up" class="w-4 h-4 text-emerald-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">95% completion rates</h4>
+                <p class="text-gray-600 text-sm mt-1">Dramatically higher conversions with frictionless experience</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">How Turrant.ai Works</h2>
+        <p class="mt-4 text-lg text-gray-600">From setup to insights in six steps</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-sm font-mono text-emerald-600">01</span>
+            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+              <i data-lucide="settings" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Configure</h3>
+          <p class="text-gray-600 mb-4">Set up your document requirements, validation rules, and approval workflows. No code required.</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 50+ Indian document templates</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom validation logic</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Multi-step approvals</li>
+          </ul>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-sm font-mono text-emerald-600">02</span>
+            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+              <i data-lucide="message-square" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Collect</h3>
+          <p class="text-gray-600 mb-4">AI agents guide your customers through document submission via WhatsApp.</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Conversational AI</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Smart reminders</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> No app downloads</li>
+          </ul>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-sm font-mono text-emerald-600">03</span>
+            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+              <i data-lucide="scan" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Extract</h3>
+          <p class="text-gray-600 mb-4">99% accurate OCR reads every document — even blurry photos — and extracts data automatically.</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 10M+ documents trained</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Handwritten text support</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Auto image correction</li>
+          </ul>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-sm font-mono text-emerald-600">04</span>
+            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Validate</h3>
+          <p class="text-gray-600 mb-4">Real-time verification through government APIs plus AI-powered fraud detection.</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Aadhaar, PAN, GST</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Tampering detection</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Anomaly detection</li>
+          </ul>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-sm font-mono text-emerald-600">05</span>
+            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+              <i data-lucide="search" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Query</h3>
+          <p class="text-gray-600 mb-4">Ask questions in plain English. Get instant answers from your collected data.</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Natural language queries</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Real-time insights</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom dashboards</li>
+          </ul>
+        </div>
+        
+        <!-- Step 6 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-sm font-mono text-emerald-600">06</span>
+            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+              <i data-lucide="plug" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Integrate</h3>
+          <p class="text-gray-600 mb-4">Push verified data to your CRM, LOS, or any system via native integrations or API.</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Salesforce, HubSpot, Zoho</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> REST API & Webhooks</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> DigiLocker, Karza</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Demo Section -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Content -->
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Document Collection,<br>
+            <span class="text-gradient">Reimagined</span>
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            Your customers already use WhatsApp 100+ times a day. Now they can submit documents there too.
+          </p>
+          
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                <i data-lucide="smartphone" class="w-6 h-6 text-emerald-600"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">No app downloads</h3>
+                <p class="text-gray-600">Works on any smartphone with WhatsApp</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                <i data-lucide="zap" class="w-6 h-6 text-emerald-600"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">Instant verification</h3>
+                <p class="text-gray-600">Documents verified in seconds, not days</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                <i data-lucide="bell" class="w-6 h-6 text-emerald-600"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">Smart follow-ups</h3>
+                <p class="text-gray-600">Automated reminders that actually work</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- WhatsApp Mockup -->
+        <div class="flex justify-center">
+          <div class="bg-[#0b141a] rounded-[2.5rem] p-3 shadow-2xl max-w-xs">
+            <div class="bg-[#0b141a] rounded-[2rem] overflow-hidden">
+              <!-- Status bar -->
+              <div class="bg-[#1f2c34] px-4 py-2 flex justify-between items-center text-white text-xs">
+                <span>9:41</span>
+                <div class="flex gap-1"><span>📶</span><span>🔋</span></div>
+              </div>
+              
+              <!-- WhatsApp header -->
+              <div class="bg-[#1f2c34] px-4 py-3 flex items-center gap-3">
+                <span class="text-white">←</span>
+                <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-semibold">T</div>
+                <div class="flex-1">
+                  <div class="text-white font-medium text-sm">Turrant.ai</div>
+                  <div class="text-emerald-400 text-xs">online</div>
+                </div>
+              </div>
+              
+              <!-- Chat area -->
+              <div class="whatsapp-bg px-3 py-4 space-y-3 min-h-[320px]">
+                <div class="flex justify-start">
+                  <div class="max-w-[80%] bg-[#1f2c34] rounded-lg px-3 py-2">
+                    <p class="text-white text-sm">Hello Rahul! 👋</p>
+                    <p class="text-gray-300 text-sm mt-1">To start your loan application, please send a photo of your PAN card</p>
+                    <div class="text-right mt-1"><span class="text-[10px] text-gray-400">9:41 AM</span></div>
+                  </div>
+                </div>
+                <div class="flex justify-end">
+                  <div class="max-w-[80%] bg-[#005c4b] rounded-lg px-3 py-2">
+                    <div class="w-32 h-20 bg-gray-600 rounded flex items-center justify-center text-2xl">🪪</div>
+                    <div class="text-right mt-1">
+                      <span class="text-[10px] text-gray-300">9:42 AM</span>
+                      <span class="text-blue-400 ml-1 text-xs">✓✓</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="max-w-[80%] bg-[#1f2c34] rounded-lg px-3 py-2">
+                    <p class="text-white text-sm">✅ PAN verified!</p>
+                    <p class="text-gray-300 text-sm mt-1">Name: Rahul Sharma<br>PAN: ABCDE1234F</p>
+                    <p class="text-gray-300 text-sm mt-2">Now please send your Aadhaar card...</p>
+                    <div class="text-right mt-1"><span class="text-[10px] text-gray-400">9:42 AM</span></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Input area -->
+              <div class="bg-[#1f2c34] px-3 py-2 flex items-center gap-2">
+                <span class="text-xl">😊</span>
+                <div class="flex-1 bg-[#2a3942] rounded-full px-4 py-2 text-sm text-gray-400">Type a message...</div>
+                <span class="text-xl">📷</span>
+                <span class="text-xl">🎤</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Section -->
+  <section id="industries" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Built for Your Industry</h2>
+      </div>
+      
+      <!-- Industry Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <button onclick="showIndustry('banking')" id="tab-banking" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-gray-900 text-white">Banking & NBFC</button>
+        <button onclick="showIndustry('insurance')" id="tab-insurance" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Insurance</button>
+        <button onclick="showIndustry('hr')" id="tab-hr" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">HR & Staffing</button>
+        <button onclick="showIndustry('realestate')" id="tab-realestate" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Real Estate</button>
+        <button onclick="showIndustry('education')" id="tab-education" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Education</button>
+      </div>
+      
+      <!-- Industry Content -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div class="grid md:grid-cols-2">
+          <div class="p-8 lg:p-12">
+            <div id="industry-content">
+              <h3 id="industry-headline" class="text-2xl font-bold text-gray-900 mb-4">Faster loan processing. Higher completion rates. Less manual work.</h3>
+              <p id="industry-desc" class="text-gray-600 mb-8">Collect KYC documents, verify identities, and process loan applications through WhatsApp.</p>
+              
+              <div class="mb-8">
+                <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Use Cases</h4>
+                <ul id="industry-usecases" class="space-y-2">
+                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> Personal loan document collection</li>
+                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> KYC for new accounts</li>
+                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> Business loan documentation</li>
+                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> DSA partner onboarding</li>
+                </ul>
+              </div>
+              
+              <div class="mb-8">
+                <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Documents Supported</h4>
+                <div id="industry-docs" class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">PAN</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Aadhaar</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Bank Statements</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">ITR</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Salary Slips</span>
+                </div>
+              </div>
+              
+              <a href="#" class="inline-flex items-center gap-2 text-emerald-600 font-medium hover:text-emerald-700">Read case study <span>→</span></a>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 p-8 lg:p-12 flex items-center">
+            <div id="industry-metrics" class="grid grid-cols-3 gap-6 w-full">
+              <div class="text-center">
+                <div class="text-3xl lg:text-4xl font-bold text-gray-900">80%</div>
+                <div class="mt-2 text-sm text-gray-500">Faster TAT</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl lg:text-4xl font-bold text-gray-900">4 hrs</div>
+                <div class="mt-2 text-sm text-gray-500">Avg completion</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl lg:text-4xl font-bold text-gray-900">₹200</div>
+                <div class="mt-2 text-sm text-gray-500">Per application</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const industries = {
+      banking: {
+        headline: "Faster loan processing. Higher completion rates. Less manual work.",
+        desc: "Collect KYC documents, verify identities, and process loan applications through WhatsApp.",
+        usecases: ["Personal loan document collection", "KYC for new accounts", "Business loan documentation", "DSA partner onboarding"],
+        docs: ["PAN", "Aadhaar", "Bank Statements", "ITR", "Salary Slips", "GST Certificates"],
+        metrics: [{ value: "80%", label: "Faster TAT" }, { value: "4 hrs", label: "Avg completion" }, { value: "₹200", label: "Per application" }]
+      },
+      insurance: {
+        headline: "Streamline onboarding. Accelerate claims. Reduce fraud.",
+        desc: "From policy issuance to claims processing, automate document collection while catching fraud.",
+        usecases: ["New policy onboarding", "Health insurance claims", "Motor insurance claims", "Agent verification"],
+        docs: ["ID Proof", "Medical Reports", "Hospital Bills", "FIR Copies", "Vehicle RC", "Policy Documents"],
+        metrics: [{ value: "3x", label: "Faster claims" }, { value: "40%", label: "Fraud reduced" }, { value: "95%", label: "Satisfaction" }]
+      },
+      hr: {
+        headline: "Onboard employees in hours, not weeks.",
+        desc: "Collect offer letters, ID proofs, and verification documents without endless email chains.",
+        usecases: ["New employee onboarding", "Background verification", "Contractor documentation", "Exit formalities"],
+        docs: ["Resume", "ID Proofs", "Education Certificates", "Experience Letters", "Bank Details", "PF Forms"],
+        metrics: [{ value: "70%", label: "Faster" }, { value: "Day 1", label: "Docs complete" }, { value: "Zero", label: "Follow-ups" }]
+      },
+      realestate: {
+        headline: "Close deals faster with complete documentation.",
+        desc: "Collect buyer KYC, property documents, and signatures through simple WhatsApp conversations.",
+        usecases: ["Buyer KYC collection", "Property document verification", "Rental agreements", "Society NOC collection"],
+        docs: ["ID Proofs", "Property Papers", "Sale Deeds", "Encumbrance Certificates", "Society NOCs"],
+        metrics: [{ value: "50%", label: "Faster closings" }, { value: "100%", label: "Doc completeness" }, { value: "2 days", label: "Collection time" }]
+      },
+      education: {
+        headline: "Simplify admissions. Delight parents.",
+        desc: "Collect admission documents and certificates from busy parents via WhatsApp.",
+        usecases: ["Admission document collection", "Scholarship applications", "Transfer certificate requests", "Staff documentation"],
+        docs: ["Birth Certificates", "Marksheets", "Transfer Certificates", "ID Proofs", "Income Certificates"],
+        metrics: [{ value: "60%", label: "Faster admissions" }, { value: "90%", label: "Parent satisfaction" }, { value: "1 day", label: "Avg collection" }]
+      }
+    };
+    
+    function showIndustry(id) {
+      const data = industries[id];
+      document.getElementById('industry-headline').textContent = data.headline;
+      document.getElementById('industry-desc').textContent = data.desc;
+      document.getElementById('industry-usecases').innerHTML = data.usecases.map(u => `<li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> ${u}</li>`).join('');
+      document.getElementById('industry-docs').innerHTML = data.docs.map(d => `<span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">${d}</span>`).join('');
+      document.getElementById('industry-metrics').innerHTML = data.metrics.map(m => `<div class="text-center"><div class="text-3xl lg:text-4xl font-bold text-gray-900">${m.value}</div><div class="mt-2 text-sm text-gray-500">${m.label}</div></div>`).join('');
+      
+      document.querySelectorAll('.industry-tab').forEach(tab => {
+        tab.classList.remove('bg-gray-900', 'text-white');
+        tab.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+      });
+      document.getElementById('tab-' + id).classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+      document.getElementById('tab-' + id).classList.add('bg-gray-900', 'text-white');
+    }
+  </script>
+
+  <!-- Features Section -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Everything you need to collect documents at scale</h2>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="message-circle" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">WhatsApp Native</h3>
+          <p class="text-sm text-gray-600">Collect documents where your customers already are</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="scan" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Smart OCR</h3>
+          <p class="text-sm text-gray-600">99% accuracy on Indian documents</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="shield-check" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Govt. API Verification</h3>
+          <p class="text-sm text-gray-600">Real-time Aadhaar, PAN, GST checks</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="bot" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">AI Fraud Detection</h3>
+          <p class="text-sm text-gray-600">Catch tampering and anomalies automatically</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="workflow" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">No-Code Workflows</h3>
+          <p class="text-sm text-gray-600">Build document flows without developers</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="bar-chart-3" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Real-Time Analytics</h3>
+          <p class="text-sm text-gray-600">Track completion rates and bottlenecks</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="bell-ring" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Smart Reminders</h3>
+          <p class="text-sm text-gray-600">Automated follow-ups that work</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="lock" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Secure by Default</h3>
+          <p class="text-sm text-gray-600">Encrypted storage, complete audit trails</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="plug" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Open API</h3>
+          <p class="text-sm text-gray-600">Connect to any system</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="headphones" class="w-5 h-5 text-gray-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Priority Support</h3>
+          <p class="text-sm text-gray-600">Dedicated help when you need it</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">What our customers say</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-800 rounded-2xl p-8">
+          <div class="text-emerald-400 text-4xl mb-4">"</div>
+          <p class="text-gray-300 text-lg mb-6 leading-relaxed">Turrant.ai reduced our loan processing time from 7 days to 4 hours. Our customers love submitting documents on WhatsApp.</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">A</div>
+            <div>
+              <div class="font-semibold text-white">Amit Sharma</div>
+              <div class="text-gray-400 text-sm">Head of Operations, ABC Finance</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-2xl p-8">
+          <div class="text-emerald-400 text-4xl mb-4">"</div>
+          <p class="text-gray-300 text-lg mb-6 leading-relaxed">We used to lose 30% of applications to incomplete documents. With Turrant.ai, we're at 95% completion.</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">P</div>
+            <div>
+              <div class="font-semibold text-white">Priya Menon</div>
+              <div class="text-gray-400 text-sm">VP Digital, XYZ Insurance</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-2xl p-8">
+          <div class="text-emerald-400 text-4xl mb-4">"</div>
+          <p class="text-gray-300 text-lg mb-6 leading-relaxed">The fraud detection caught ₹2 crore in fake documents in our first month.</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">R</div>
+            <div>
+              <div class="font-semibold text-white">Rajesh Kumar</div>
+              <div class="text-gray-400 text-sm">CRO, PQR Microfinance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Simple, credit-based pricing</h2>
+        <p class="mt-4 text-lg text-gray-600">Pay for what you use. Unused credits roll over with active subscription.</p>
+      </div>
+      
+      <!-- Credit Explainer -->
+      <div class="max-w-2xl mx-auto mb-12 bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <h3 class="font-semibold text-gray-900 mb-4 text-center">How Credits Work</h3>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div>
+            <div class="text-2xl font-bold text-emerald-600">50</div>
+            <div class="text-sm text-gray-600">credits per process</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-emerald-600">5</div>
+            <div class="text-sm text-gray-600">credits per document page</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-emerald-600">5</div>
+            <div class="text-sm text-gray-600">credits per validation</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <!-- Starter -->
+        <div class="rounded-2xl p-6 bg-white border border-gray-200">
+          <div class="text-center mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Starter</h3>
+            <div class="mt-4 flex items-baseline justify-center gap-1">
+              <span class="text-3xl font-bold text-gray-900">₹4,999</span>
+              <span class="text-gray-500">/mo</span>
+            </div>
+            <div class="mt-2 px-3 py-1 bg-emerald-50 text-emerald-700 text-sm font-medium rounded-full inline-block">
+              4,999 credits
+            </div>
+            <p class="mt-3 text-sm text-gray-600">For small teams getting started</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> ~100 processes/month</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 5 workflows</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> WhatsApp + Email</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Email support</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Credits roll over</li>
+          </ul>
+          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Start free</a>
+        </div>
+        
+        <!-- Standard -->
+        <div class="rounded-2xl p-6 bg-white border border-gray-200">
+          <div class="text-center mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Standard</h3>
+            <div class="mt-4 flex items-baseline justify-center gap-1">
+              <span class="text-3xl font-bold text-gray-900">₹9,999</span>
+              <span class="text-gray-500">/mo</span>
+            </div>
+            <div class="mt-2 px-3 py-1 bg-emerald-50 text-emerald-700 text-sm font-medium rounded-full inline-block">
+              10,999 credits
+            </div>
+            <p class="mt-3 text-sm text-gray-600">For growing businesses</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> ~220 processes/month</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 15 workflows</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> All channels</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Priority support</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Credits roll over</li>
+          </ul>
+          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Start free</a>
+        </div>
+        
+        <!-- Premium (Highlighted) -->
+        <div class="relative rounded-2xl p-6 bg-gray-900 text-white ring-4 ring-emerald-500">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-medium rounded-full">Most Popular</div>
+          <div class="text-center mb-6">
+            <h3 class="text-lg font-bold text-white">Premium</h3>
+            <div class="mt-4 flex items-baseline justify-center gap-1">
+              <span class="text-3xl font-bold text-white">₹14,999</span>
+              <span class="text-gray-400">/mo</span>
+            </div>
+            <div class="mt-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full inline-block">
+              16,999 credits
+            </div>
+            <p class="mt-3 text-sm text-gray-400">For scaling operations</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ~340 processes/month</li>
+            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Unlimited workflows</li>
+            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> All channels + API</li>
+            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Dedicated support</li>
+            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Credits roll over</li>
+          </ul>
+          <a href="#" class="block w-full py-3 bg-white text-gray-900 rounded-full text-center font-medium hover:bg-gray-100 transition-all">Start free</a>
+        </div>
+        
+        <!-- Enterprise -->
+        <div class="rounded-2xl p-6 bg-white border border-gray-200">
+          <div class="text-center mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Enterprise</h3>
+            <div class="mt-4 flex items-baseline justify-center gap-1">
+              <span class="text-3xl font-bold text-gray-900">Custom</span>
+            </div>
+            <div class="mt-2 px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full inline-block">
+              Volume pricing
+            </div>
+            <p class="mt-3 text-sm text-gray-600">For large organizations</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Unlimited credits</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Unlimited workflows</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom integrations</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Dedicated CSM</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom SLA</li>
+          </ul>
+          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Contact sales</a>
+        </div>
+      </div>
+      
+      <p class="text-center mt-8 text-gray-500">14-day free trial • No credit card required • Cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Questions</h2>
+      </div>
+      
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+            <span class="font-medium text-gray-900">How long does it take to get started?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-600">Most teams are live within 24-48 hours. We help you configure your first workflow and test it before going live.</div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+            <span class="font-medium text-gray-900">Do my customers need to download an app?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-600">No. Everything works through WhatsApp and Email — apps your customers already have.</div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+            <span class="font-medium text-gray-900">Which Indian documents do you support?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-600">50+ document types including PAN, Aadhaar, Voter ID, Passport, Bank Statements, ITR, GST Certificates, and more. Custom types can be added in minutes.</div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+            <span class="font-medium text-gray-900">How do credits work?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-600">Each process costs 50 credits, each document page costs 5 credits, and each validation costs 5 credits. Unused credits roll over to the next month as long as your subscription is active.</div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+            <span class="font-medium text-gray-900">Is my data secure?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-600">Yes. All data is encrypted, stored in Indian data centers, with complete audit trails for every document.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('[data-lucide="chevron-down"]');
+      answer.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
+  </script>
+
+  <!-- Final CTA Section -->
+  <section id="demo" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">Ready to fix document collection?</h2>
+      <p class="text-xl text-gray-600 mb-10">Start your free trial today. No credit card required.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#" class="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg shadow-gray-900/20">
+          Start Free Trial <span>→</span>
+        </a>
+        <a href="#" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-700 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all">
+          Book a Demo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">T</span>
+            </div>
+            <span class="font-semibold text-lg">Turrant.ai</span>
+          </div>
+          <p class="text-gray-400 text-sm">AI-powered document collection</p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-300 mb-4">Product</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white">Features</a></li>
+            <li><a href="#" class="hover:text-white">Pricing</a></li>
+            <li><a href="#" class="hover:text-white">Integrations</a></li>
+            <li><a href="#" class="hover:text-white">API</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-300 mb-4">Solutions</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white">Banking</a></li>
+            <li><a href="#" class="hover:text-white">Insurance</a></li>
+            <li><a href="#" class="hover:text-white">HR</a></li>
+            <li><a href="#" class="hover:text-white">Real Estate</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-300 mb-4">Resources</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white">Docs</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">Help Center</a></li>
+            <li><a href="#" class="hover:text-white">Changelog</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-300 mb-4">Company</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white">About</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+            <li><a href="#" class="hover:text-white">Partners</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-gray-400 text-sm">© 2025 Turrant.ai • Privacy • Terms</div>
+        <div class="flex items-center gap-4">
+          <a href="mailto:hello@turrant.ai" class="text-gray-400 hover:text-white text-sm">hello@turrant.ai</a>
+          <div class="flex gap-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.85.38-1.78.64-2.75.76 1-.6 1.76-1.55 2.12-2.68-.93.55-1.96.95-3.06 1.17-.88-.94-2.13-1.53-3.51-1.53-2.66 0-4.81 2.16-4.81 4.81 0 .38.04.75.13 1.1-4-.2-7.58-2.11-9.96-5.02-.42.72-.66 1.56-.66 2.46 0 1.68.85 3.16 2.14 4.02-.79-.02-1.53-.24-2.18-.6v.06c0 2.35 1.67 4.31 3.88 4.76-.4.1-.83.16-1.27.16-.31 0-.62-.03-.92-.08.63 1.96 2.45 3.39 4.61 3.43-1.69 1.32-3.83 2.1-6.15 2.1-.4 0-.8-.02-1.19-.07 2.19 1.4 4.78 2.22 7.57 2.22 9.07 0 14.02-7.52 14.02-14.02 0-.21 0-.43-.01-.64.96-.69 1.79-1.56 2.45-2.55z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="font-medium">Chat with us</span>
+  </a>
+
+  <!-- Lucide Icons Script -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>
