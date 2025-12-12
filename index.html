@@ -41,7 +41,33 @@
     /* Animations */
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes pulse-ring { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-marquee { animation: marquee 25s linear infinite; }
+    .animate-marquee:hover { animation-play-state: paused; }
+
+    /* Stat card gradient border on hover */
+    .stat-card {
+      position: relative;
+      background: white;
+      z-index: 1;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      padding: 2px;
+      background: linear-gradient(135deg, #059669, #10b981, #14b8a6);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .stat-card:hover::before {
+      opacity: 1;
+    }
 
     /* Premium shimmer animations */
     @keyframes text-shimmer {
@@ -521,8 +547,8 @@
       <div class="text-center max-w-4xl mx-auto">
         <!-- Headline -->
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1]">
-          Collect Documents on <span class="text-shimmer">WhatsApp.</span><br>
-          Validate Instantly. Close Faster.
+          Stop Chasing Documents.<br>
+          Start Collecting <span class="text-shimmer">Smarter.</span>
         </h1>
         
         <!-- Subheadline -->
@@ -542,31 +568,83 @@
           </a>
         </div>
         
-        <!-- Metrics -->
-        <div class="mt-16 grid grid-cols-3 gap-8 max-w-xl mx-auto">
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-gray-900">80%</div>
-            <div class="mt-1 text-sm text-gray-500">Faster Processing</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-gray-900">60%</div>
-            <div class="mt-1 text-sm text-gray-500">Higher Completion</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-gray-900">99%</div>
-            <div class="mt-1 text-sm text-gray-500">OCR Accuracy</div>
+        <!-- Stats Section -->
+        <div class="mt-20" id="statsSection">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <!-- Stat 1: Faster Processing -->
+            <div class="stat-card bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                <i data-lucide="zap" class="w-6 h-6 text-emerald-600"></i>
+              </div>
+              <div class="text-center">
+                <div class="text-5xl font-bold text-emerald-600">
+                  <span class="stat-number" data-target="80">0</span>%+
+                </div>
+                <div class="mt-2 text-gray-500 font-medium">Faster Processing</div>
+              </div>
+            </div>
+            <!-- Stat 2: Higher Completion -->
+            <div class="stat-card bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                <i data-lucide="check-circle" class="w-6 h-6 text-emerald-600"></i>
+              </div>
+              <div class="text-center">
+                <div class="text-5xl font-bold text-emerald-600">
+                  <span class="stat-number" data-target="60">0</span>%+
+                </div>
+                <div class="mt-2 text-gray-500 font-medium">Higher Completion</div>
+              </div>
+            </div>
+            <!-- Stat 3: OCR Accuracy -->
+            <div class="stat-card bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                <i data-lucide="target" class="w-6 h-6 text-emerald-600"></i>
+              </div>
+              <div class="text-center">
+                <div class="text-5xl font-bold text-emerald-600">
+                  <span class="stat-number" data-target="99">0</span>%+
+                </div>
+                <div class="mt-2 text-gray-500 font-medium">OCR Accuracy</div>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <!-- Logo bar -->
-        <div class="mt-16">
-          <p class="text-sm text-gray-400 mb-6">Powering document collection for growing businesses</p>
-          <div class="flex items-center justify-center gap-6 flex-wrap opacity-50 grayscale">
-            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">ABC Finance</span></div>
-            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">XYZ Insurance</span></div>
-            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">PQR Micro</span></div>
-            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">LMN Bank</span></div>
-            <div class="h-8 px-4 bg-gray-200 rounded flex items-center justify-center"><span class="text-xs font-medium text-gray-500">DEF Corp</span></div>
+
+        <!-- Trusted By Section -->
+        <div class="mt-16 pt-10 border-t border-gray-100">
+          <!-- Inline Stats with Dividers -->
+          <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="text-xl font-bold text-gray-900">500+</span>
+              <span class="text-sm text-gray-500">Businesses</span>
+            </div>
+            <span class="text-gray-300 hidden sm:inline">·</span>
+            <div class="flex items-center gap-2">
+              <span class="text-xl font-bold text-gray-900">10M+</span>
+              <span class="text-sm text-gray-500">Documents</span>
+            </div>
+            <span class="text-gray-300 hidden sm:inline">·</span>
+            <div class="flex items-center gap-2">
+              <span class="text-xl font-bold text-gray-900">50+</span>
+              <span class="text-sm text-gray-500">Enterprise Clients</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest font-medium">Trusted by leading enterprises</p>
+
+          <!-- Company Logos as Text -->
+          <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">ABC FINANCE</span>
+            <span class="text-gray-300">·</span>
+            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">XYZ INSURANCE</span>
+            <span class="text-gray-300">·</span>
+            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">PQR MICROFINANCE</span>
+            <span class="text-gray-300">·</span>
+            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">LMN BANK</span>
+            <span class="text-gray-300">·</span>
+            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">DEF CORP</span>
+            <span class="text-gray-300">·</span>
+            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">GLOBALTRADE</span>
           </div>
         </div>
       </div>
@@ -822,7 +900,7 @@
         <div>
           <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Document Collection,<br>
-            <span class="text-gradient">Reimagined</span>
+            <span class="text-shimmer">Reimagined.</span>
           </h2>
           <p class="text-lg text-gray-600 mb-8">
             Your customers already use WhatsApp 100+ times a day. Now they can submit documents there too.
@@ -859,54 +937,24 @@
           </div>
         </div>
         
-        <!-- WhatsApp Phone Carousel -->
-        <div class="flex flex-col items-center">
-          <div class="relative">
-            <!-- Phone Frame -->
-            <div class="phone-frame">
-              <div class="phone-screen">
-                <!-- Phone Notch -->
-                <div class="phone-notch"></div>
-
-                <!-- Carousel Container -->
-                <div class="phone-carousel" id="phoneCarousel">
-                  <div class="phone-carousel-track" id="carouselTrack">
-                    <div class="phone-carousel-slide">
-                      <img src="images/legal-01-whatsapp-journey_page-0001.jpg" alt="WhatsApp Journey Step 1">
-                    </div>
-                    <div class="phone-carousel-slide">
-                      <img src="images/legal-01-whatsapp-journey_page-0002.jpg" alt="WhatsApp Journey Step 2">
-                    </div>
-                    <div class="phone-carousel-slide">
-                      <img src="images/legal-01-whatsapp-journey_page-0003.jpg" alt="WhatsApp Journey Step 3">
-                    </div>
-                    <div class="phone-carousel-slide">
-                      <img src="images/legal-01-whatsapp-journey_page-0004.jpg" alt="WhatsApp Journey Step 4">
-                    </div>
-                    <div class="phone-carousel-slide">
-                      <img src="images/legal-01-whatsapp-journey_page-0005.jpg" alt="WhatsApp Journey Step 5">
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <!-- WhatsApp Phone GIF with iPhone Frame -->
+        <div class="flex justify-center">
+          <!-- iPhone Frame -->
+          <div class="relative p-3 sm:p-4 rounded-[45px] sm:rounded-[50px] bg-gradient-to-b from-gray-800 via-gray-900 to-black shadow-[0_25px_60px_rgba(0,0,0,0.4)]" style="max-width: 340px;">
+            <!-- Side Button (right) -->
+            <div class="absolute right-[-2px] top-[120px] w-[3px] h-[60px] bg-gray-700 rounded-l-sm"></div>
+            <!-- Volume Buttons (left) -->
+            <div class="absolute left-[-2px] top-[100px] w-[3px] h-[30px] bg-gray-700 rounded-r-sm"></div>
+            <div class="absolute left-[-2px] top-[140px] w-[3px] h-[50px] bg-gray-700 rounded-r-sm"></div>
+            <!-- Phone Screen -->
+            <div class="relative w-[260px] sm:w-[300px] h-[540px] sm:h-[620px] overflow-hidden rounded-[35px] sm:rounded-[40px] bg-black" style="line-height: 0; padding: 0;">
+              <img
+                src="images/wp mockup gif.gif"
+                alt="WhatsApp Document Collection Demo"
+                class="block w-full h-full object-cover object-center m-0 p-0"
+                style="transform: scale(1.03);"
+              >
             </div>
-
-            <!-- Navigation Arrows -->
-            <button class="carousel-btn carousel-btn-prev" onclick="moveCarousel(-1)" aria-label="Previous slide">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
-            </button>
-            <button class="carousel-btn carousel-btn-next" onclick="moveCarousel(1)" aria-label="Next slide">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-
-          <!-- Dot Indicators -->
-          <div class="carousel-dots" id="carouselDots">
-            <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
-            <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
-            <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
-            <button class="carousel-dot" onclick="goToSlide(3)" aria-label="Go to slide 4"></button>
-            <button class="carousel-dot" onclick="goToSlide(4)" aria-label="Go to slide 5"></button>
           </div>
         </div>
       </div>
@@ -926,61 +974,81 @@
         <button onclick="showIndustry('insurance')" id="tab-insurance" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Insurance</button>
         <button onclick="showIndustry('hr')" id="tab-hr" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">HR & Staffing</button>
         <button onclick="showIndustry('realestate')" id="tab-realestate" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Real Estate</button>
-        <button onclick="showIndustry('education')" id="tab-education" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Education</button>
+        <button onclick="showIndustry('education')" id="tab-education" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Supply Chain</button>
       </div>
       
-      <!-- Industry Content -->
-      <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-        <div class="grid md:grid-cols-2">
-          <div class="p-8 lg:p-12">
-            <div id="industry-content">
-              <h3 id="industry-headline" class="text-2xl font-bold text-gray-900 mb-4">Faster loan processing. Higher completion rates. Less manual work.</h3>
-              <p id="industry-desc" class="text-gray-600 mb-8">Collect KYC documents, verify identities, and process loan applications through WhatsApp.</p>
-              
-              <div class="mb-8">
-                <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Use Cases</h4>
-                <ul id="industry-usecases" class="space-y-2">
-                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> Personal loan document collection</li>
-                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> KYC for new accounts</li>
-                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> Business loan documentation</li>
-                  <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> DSA partner onboarding</li>
-                </ul>
-              </div>
-              
-              <div class="mb-8">
-                <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Documents Supported</h4>
-                <div id="industry-docs" class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">PAN</span>
-                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Aadhaar</span>
-                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Bank Statements</span>
-                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">ITR</span>
-                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Salary Slips</span>
+      <!-- Industry Content with Navigation Arrows -->
+      <div class="relative flex items-center gap-2 sm:gap-4">
+        <!-- Left Arrow -->
+        <button onclick="navigateIndustry(-1)" class="industry-nav-arrow flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:scale-105 transition-all duration-200 cursor-pointer">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Content Card -->
+        <div class="flex-1 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          <div class="grid md:grid-cols-2">
+            <!-- Left side: Text content -->
+            <div class="p-8 lg:p-12">
+              <div id="industry-content">
+                <h3 id="industry-headline" class="text-2xl font-bold text-gray-900 mb-4">Faster loan processing. Higher completion rates. Less manual work.</h3>
+                <p id="industry-desc" class="text-gray-600 mb-8">Collect KYC documents, verify identities, and process loan applications through WhatsApp.</p>
+
+                <div class="mb-8">
+                  <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Use Cases</h4>
+                  <ul id="industry-usecases" class="space-y-2">
+                    <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> Personal loan document collection</li>
+                    <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> KYC for new accounts</li>
+                    <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> Business loan documentation</li>
+                    <li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> DSA partner onboarding</li>
+                  </ul>
                 </div>
+
+                <div class="mb-8">
+                  <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Documents Supported</h4>
+                  <div id="industry-docs" class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">PAN</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Aadhaar</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Bank Statements</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">ITR</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">Salary Slips</span>
+                  </div>
+                </div>
+
+                <a href="#" class="inline-flex items-center gap-2 text-emerald-600 font-medium hover:text-emerald-700">Read case study <span>→</span></a>
               </div>
-              
-              <a href="#" class="inline-flex items-center gap-2 text-emerald-600 font-medium hover:text-emerald-700">Read case study <span>→</span></a>
             </div>
-          </div>
-          
-          <div id="industry-stats-bg" class="relative p-8 lg:p-12 flex items-center overflow-hidden rounded-r-2xl industry-stats-bg" style="background-image: url('images/Gemini_Generated_Image_52tn1o52tn1o52tn.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-            <!-- Overlay for text readability -->
-            <div class="absolute inset-0 bg-gradient-to-r from-white/70 via-white/50 to-white/30"></div>
-            <div id="industry-metrics" class="grid grid-cols-3 gap-6 w-full relative z-10">
-              <div class="text-center">
-                <div class="text-3xl lg:text-4xl font-bold text-gray-900">80%</div>
-                <div class="mt-2 text-sm text-gray-500">Faster TAT</div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl lg:text-4xl font-bold text-gray-900">4 hrs</div>
-                <div class="mt-2 text-sm text-gray-500">Avg completion</div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl lg:text-4xl font-bold text-gray-900">₹200</div>
-                <div class="mt-2 text-sm text-gray-500">Per application</div>
+
+            <!-- Right side: Background image with stats overlapping at bottom -->
+            <div id="industry-image-bg" class="relative min-h-[320px] overflow-hidden transition-opacity duration-300" style="background-image: url('images/Gemini Bank New mockup.png'); background-size: cover; background-position: top center; background-repeat: no-repeat;">
+              <!-- Stats overlay at bottom of image -->
+              <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md px-4 py-4 lg:py-5">
+                <div id="industry-metrics" class="grid grid-cols-3 gap-3 lg:gap-6">
+                  <div class="text-center">
+                    <div class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">80%</div>
+                    <div class="mt-1 text-xs sm:text-sm text-gray-600">Faster TAT</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">4 hrs</div>
+                    <div class="mt-1 text-xs sm:text-sm text-gray-600">Avg completion</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">₹200</div>
+                    <div class="mt-1 text-xs sm:text-sm text-gray-600">Per application</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Right Arrow -->
+        <button onclick="navigateIndustry(1)" class="industry-nav-arrow flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:scale-105 transition-all duration-200 cursor-pointer">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
@@ -993,7 +1061,8 @@
         usecases: ["Personal loan document collection", "KYC for new accounts", "Business loan documentation", "DSA partner onboarding"],
         docs: ["PAN", "Aadhaar", "Bank Statements", "ITR", "Salary Slips", "GST Certificates"],
         metrics: [{ value: "80%", label: "Faster TAT" }, { value: "4 hrs", label: "Avg completion" }, { value: "₹200", label: "Per application" }],
-        bgImage: "images/Gemini_Generated_Image_52tn1o52tn1o52tn.png"
+        bgImage: "images/Gemini Bank New mockup.png",
+        bgPosition: "top center"
       },
       insurance: {
         headline: "Streamline onboarding. Accelerate claims. Reduce fraud.",
@@ -1001,7 +1070,8 @@
         usecases: ["New policy onboarding", "Health insurance claims", "Motor insurance claims", "Agent verification"],
         docs: ["ID Proof", "Medical Reports", "Hospital Bills", "FIR Copies", "Vehicle RC", "Policy Documents"],
         metrics: [{ value: "3x", label: "Faster claims" }, { value: "40%", label: "Fraud reduced" }, { value: "95%", label: "Satisfaction" }],
-        bgImage: "images/Gemini_Generated_Image_jr1y18jr1y18jr1y.png"
+        bgImage: "images/Insurance company mockup.png",
+        bgPosition: "top center"
       },
       hr: {
         headline: "Onboard employees in hours, not weeks.",
@@ -1009,7 +1079,8 @@
         usecases: ["New employee onboarding", "Background verification", "Contractor documentation", "Exit formalities"],
         docs: ["Resume", "ID Proofs", "Education Certificates", "Experience Letters", "Bank Details", "PF Forms"],
         metrics: [{ value: "70%", label: "Faster" }, { value: "Day 1", label: "Docs complete" }, { value: "Zero", label: "Follow-ups" }],
-        bgImage: "images/Gemini_Generated_Image_emz8xwemz8xwemz8.png"
+        bgImage: "images/HR-Employee mock up.png",
+        bgPosition: "center center"
       },
       realestate: {
         headline: "Close deals faster with complete documentation.",
@@ -1017,32 +1088,52 @@
         usecases: ["Buyer KYC collection", "Property document verification", "Rental agreements", "Society NOC collection"],
         docs: ["ID Proofs", "Property Papers", "Sale Deeds", "Encumbrance Certificates", "Society NOCs"],
         metrics: [{ value: "50%", label: "Faster closings" }, { value: "100%", label: "Doc completeness" }, { value: "2 days", label: "Collection time" }],
-        bgImage: "images/Gemini_Generated_Image_n8uqo6n8uqo6n8uq.png"
+        bgImage: "images/Real_estate mock up.png",
+        bgPosition: "center center"
       },
       education: {
-        headline: "Simplify admissions. Delight parents.",
-        desc: "Collect admission documents and certificates from busy parents via WhatsApp.",
-        usecases: ["Admission document collection", "Scholarship applications", "Transfer certificate requests", "Staff documentation"],
-        docs: ["Birth Certificates", "Marksheets", "Transfer Certificates", "ID Proofs", "Income Certificates"],
-        metrics: [{ value: "60%", label: "Faster admissions" }, { value: "90%", label: "Parent satisfaction" }, { value: "1 day", label: "Avg collection" }],
-        bgImage: "images/Gemini_Generated_Image_eku089eku089eku0.png"
+        headline: "Streamline vendor onboarding. Ensure compliance.",
+        desc: "Collect vendor documents, verify credentials, and manage supplier compliance through WhatsApp.",
+        usecases: ["Vendor onboarding & KYC", "Purchase order documentation", "Quality certification collection", "Compliance document tracking"],
+        docs: ["GST Certificates", "Trade Licenses", "Quality Certs", "Bank Details", "MSME Registration", "ISO Certificates"],
+        metrics: [{ value: "65%", label: "Faster onboarding" }, { value: "100%", label: "Compliance rate" }, { value: "2 days", label: "Vendor activation" }],
+        bgImage: "images/Supply chain mock up.png",
+        bgPosition: "center center"
       }
     };
 
+    // Industry navigation
+    const industryKeys = ['banking', 'insurance', 'hr', 'realestate', 'education'];
+    let currentIndustryIndex = 0;
+
+    function navigateIndustry(direction) {
+      currentIndustryIndex += direction;
+      // Loop around
+      if (currentIndustryIndex < 0) {
+        currentIndustryIndex = industryKeys.length - 1;
+      } else if (currentIndustryIndex >= industryKeys.length) {
+        currentIndustryIndex = 0;
+      }
+      showIndustry(industryKeys[currentIndustryIndex]);
+    }
+
     function showIndustry(id) {
+      // Update current index when tab is clicked directly
+      currentIndustryIndex = industryKeys.indexOf(id);
       const data = industries[id];
       document.getElementById('industry-headline').textContent = data.headline;
       document.getElementById('industry-desc').textContent = data.desc;
       document.getElementById('industry-usecases').innerHTML = data.usecases.map(u => `<li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> ${u}</li>`).join('');
       document.getElementById('industry-docs').innerHTML = data.docs.map(d => `<span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">${d}</span>`).join('');
-      document.getElementById('industry-metrics').innerHTML = data.metrics.map(m => `<div class="text-center"><div class="text-3xl lg:text-4xl font-bold text-gray-900">${m.value}</div><div class="mt-2 text-sm text-gray-500">${m.label}</div></div>`).join('');
+      document.getElementById('industry-metrics').innerHTML = data.metrics.map(m => `<div class="text-center"><div class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">${m.value}</div><div class="mt-1 text-xs sm:text-sm text-gray-600">${m.label}</div></div>`).join('');
 
       // Update background image with fade effect
-      const statsBg = document.getElementById('industry-stats-bg');
-      statsBg.style.opacity = '0';
+      const imageBg = document.getElementById('industry-image-bg');
+      imageBg.style.opacity = '0';
       setTimeout(() => {
-        statsBg.style.backgroundImage = `url('${data.bgImage}')`;
-        statsBg.style.opacity = '1';
+        imageBg.style.backgroundImage = `url('${data.bgImage}')`;
+        imageBg.style.backgroundPosition = data.bgPosition;
+        imageBg.style.opacity = '1';
       }, 150);
 
       document.querySelectorAll('.industry-tab').forEach(tab => {
@@ -1142,44 +1233,246 @@
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-4xl font-bold text-white">What our customers say</h2>
       </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="testimonial-card bg-gray-800 rounded-2xl p-8">
-          <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
-          <p class="text-gray-300 text-lg mb-6 leading-relaxed">Turrant.ai reduced our loan processing time from 7 days to 4 hours. Our customers love submitting documents on WhatsApp.</p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">A</div>
-            <div>
-              <div class="font-semibold text-white">Amit Sharma</div>
-              <div class="text-gray-400 text-sm">Head of Operations, ABC Finance</div>
+
+      <!-- Testimonial Carousel -->
+      <div class="relative" id="testimonialCarousel">
+        <!-- Carousel Container -->
+        <div class="overflow-hidden mx-8 sm:mx-12">
+          <div class="testimonial-track flex transition-transform duration-500 ease-in-out" id="testimonialTrack">
+            <!-- Testimonial 1 - Banking/NBFC -->
+            <div class="testimonial-slide w-full md:w-1/3 flex-shrink-0 px-3">
+              <div class="testimonial-card bg-gray-800 rounded-2xl p-8 h-full flex flex-col">
+                <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed flex-grow">Turrant.ai reduced our loan processing time from 7 days to 4 hours. Our customers love submitting documents on WhatsApp.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">A</div>
+                  <div>
+                    <div class="font-semibold text-white">Amit Sharma</div>
+                    <div class="text-gray-400 text-sm">Head of Operations, ABC Finance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 - Insurance -->
+            <div class="testimonial-slide w-full md:w-1/3 flex-shrink-0 px-3">
+              <div class="testimonial-card bg-gray-800 rounded-2xl p-8 h-full flex flex-col">
+                <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed flex-grow">We used to lose 30% of applications to incomplete documents. With Turrant.ai, we're at 95% completion.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">P</div>
+                  <div>
+                    <div class="font-semibold text-white">Priya Menon</div>
+                    <div class="text-gray-400 text-sm">VP Digital, XYZ Insurance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 - Microfinance -->
+            <div class="testimonial-slide w-full md:w-1/3 flex-shrink-0 px-3">
+              <div class="testimonial-card bg-gray-800 rounded-2xl p-8 h-full flex flex-col">
+                <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed flex-grow">The fraud detection caught ₹2 crore in fake documents in our first month. ROI was immediate.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">R</div>
+                  <div>
+                    <div class="font-semibold text-white">Rajesh Kumar</div>
+                    <div class="text-gray-400 text-sm">CRO, PQR Microfinance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 4 - HR/Staffing -->
+            <div class="testimonial-slide w-full md:w-1/3 flex-shrink-0 px-3">
+              <div class="testimonial-card bg-gray-800 rounded-2xl p-8 h-full flex flex-col">
+                <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed flex-grow">Employee onboarding that took 5 days now happens in 4 hours. Our HR team finally has time for strategic work.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">S</div>
+                  <div>
+                    <div class="font-semibold text-white">Sneha Patel</div>
+                    <div class="text-gray-400 text-sm">CHRO, TechStart Solutions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 5 - Real Estate -->
+            <div class="testimonial-slide w-full md:w-1/3 flex-shrink-0 px-3">
+              <div class="testimonial-card bg-gray-800 rounded-2xl p-8 h-full flex flex-col">
+                <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed flex-grow">Property documentation was our biggest bottleneck. Turrant.ai helped us close deals 50% faster with complete compliance.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">V</div>
+                  <div>
+                    <div class="font-semibold text-white">Vikram Malhotra</div>
+                    <div class="text-gray-400 text-sm">Director, Horizon Realty</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 6 - Supply Chain -->
+            <div class="testimonial-slide w-full md:w-1/3 flex-shrink-0 px-3">
+              <div class="testimonial-card bg-gray-800 rounded-2xl p-8 h-full flex flex-col">
+                <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed flex-grow">Vendor onboarding used to be a nightmare. Now we onboard 100+ suppliers a month with complete GST and compliance docs verified automatically.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">A</div>
+                  <div>
+                    <div class="font-semibold text-white">Ananya Desai</div>
+                    <div class="text-gray-400 text-sm">Supply Chain Head, GlobalTrade Inc</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="testimonial-card bg-gray-800 rounded-2xl p-8">
-          <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
-          <p class="text-gray-300 text-lg mb-6 leading-relaxed">We used to lose 30% of applications to incomplete documents. With Turrant.ai, we're at 95% completion.</p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">P</div>
-            <div>
-              <div class="font-semibold text-white">Priya Menon</div>
-              <div class="text-gray-400 text-sm">VP Digital, XYZ Insurance</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card bg-gray-800 rounded-2xl p-8">
-          <div class="testimonial-quote text-emerald-400 text-4xl mb-4">"</div>
-          <p class="text-gray-300 text-lg mb-6 leading-relaxed">The fraud detection caught ₹2 crore in fake documents in our first month.</p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">R</div>
-            <div>
-              <div class="font-semibold text-white">Rajesh Kumar</div>
-              <div class="text-gray-400 text-sm">CRO, PQR Microfinance</div>
-            </div>
-          </div>
-        </div>
+
+        <!-- Navigation Arrows -->
+        <button onclick="moveTestimonial(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 hover:scale-105 transition-all duration-200 z-10">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button onclick="moveTestimonial(1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 hover:scale-105 transition-all duration-200 z-10">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dot Indicators -->
+      <div class="flex justify-center gap-2 mt-8" id="testimonialDots">
+        <button onclick="goToTestimonial(0)" class="testimonial-dot w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300"></button>
+        <button onclick="goToTestimonial(1)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all duration-300"></button>
+        <button onclick="goToTestimonial(2)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all duration-300"></button>
+        <button onclick="goToTestimonial(3)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all duration-300"></button>
+        <button onclick="goToTestimonial(4)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all duration-300 hidden md:block"></button>
+        <button onclick="goToTestimonial(5)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all duration-300 hidden md:block"></button>
       </div>
     </div>
   </section>
+
+  <script>
+    // Testimonial Carousel
+    let testimonialIndex = 0;
+    let testimonialAutoSlide;
+    const totalTestimonials = 6;
+
+    function getTestimonialsPerView() {
+      return window.innerWidth >= 768 ? 3 : 1;
+    }
+
+    function getMaxTestimonialIndex() {
+      const perView = getTestimonialsPerView();
+      return Math.max(0, totalTestimonials - perView);
+    }
+
+    function moveTestimonial(direction) {
+      const maxIndex = getMaxTestimonialIndex();
+      testimonialIndex += direction;
+      if (testimonialIndex < 0) testimonialIndex = maxIndex;
+      if (testimonialIndex > maxIndex) testimonialIndex = 0;
+      updateTestimonialCarousel();
+      resetTestimonialAutoSlide();
+    }
+
+    function goToTestimonial(index) {
+      const maxIndex = getMaxTestimonialIndex();
+      testimonialIndex = Math.min(index, maxIndex);
+      updateTestimonialCarousel();
+      resetTestimonialAutoSlide();
+    }
+
+    function updateTestimonialCarousel() {
+      const track = document.getElementById('testimonialTrack');
+      const perView = getTestimonialsPerView();
+      const slideWidth = 100 / perView;
+      track.style.transform = `translateX(-${testimonialIndex * slideWidth}%)`;
+
+      // Update dots
+      const dots = document.querySelectorAll('.testimonial-dot');
+      dots.forEach((dot, i) => {
+        if (i === testimonialIndex) {
+          dot.classList.remove('bg-gray-600');
+          dot.classList.add('bg-emerald-500');
+        } else {
+          dot.classList.remove('bg-emerald-500');
+          dot.classList.add('bg-gray-600');
+        }
+      });
+    }
+
+    function startTestimonialAutoSlide() {
+      testimonialAutoSlide = setInterval(() => {
+        moveTestimonial(1);
+      }, 3000);
+    }
+
+    function resetTestimonialAutoSlide() {
+      clearInterval(testimonialAutoSlide);
+      startTestimonialAutoSlide();
+    }
+
+    // Pause on hover
+    const carouselEl = document.getElementById('testimonialCarousel');
+    carouselEl.addEventListener('mouseenter', () => clearInterval(testimonialAutoSlide));
+    carouselEl.addEventListener('mouseleave', startTestimonialAutoSlide);
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      const maxIndex = getMaxTestimonialIndex();
+      if (testimonialIndex > maxIndex) testimonialIndex = maxIndex;
+      updateTestimonialCarousel();
+    });
+
+    // Start auto-slide
+    startTestimonialAutoSlide();
+  </script>
+
+  <script>
+    // Stats Counter Animation with Intersection Observer
+    const statsSection = document.getElementById('statsSection');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let statsAnimated = false;
+
+    function animateStats() {
+      if (statsAnimated) return;
+      statsAnimated = true;
+
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.dataset.target);
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function updateNumber(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeOut * target);
+          stat.textContent = current;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            stat.textContent = target;
+          }
+        }
+        requestAnimationFrame(updateNumber);
+      });
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+  </script>
 
   <!-- Pricing Section -->
   <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8">
@@ -1223,9 +1516,9 @@
             <p class="mt-3 text-sm text-gray-600">For small teams getting started</p>
           </div>
           <ul class="space-y-3 mb-6">
-            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> ~100 processes/month</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> ~100 execution/month</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 5 workflows</li>
-            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> WhatsApp + Email</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> All channels</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Email support</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Credits roll over</li>
           </ul>
@@ -1246,7 +1539,7 @@
             <p class="mt-3 text-sm text-gray-600">For growing businesses</p>
           </div>
           <ul class="space-y-3 mb-6">
-            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> ~220 processes/month</li>
+            <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> ~220 execution/month</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 15 workflows</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> All channels</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Priority support</li>
@@ -1270,7 +1563,7 @@
             <p class="mt-3 text-sm text-gray-400">For scaling operations</p>
           </div>
           <ul class="space-y-3 mb-6">
-            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ~340 processes/month</li>
+            <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ~340 execution/month</li>
             <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Unlimited workflows</li>
             <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> All channels + API</li>
             <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Dedicated support</li>
@@ -1310,7 +1603,7 @@
   <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 section-transparent">
     <div class="max-w-3xl mx-auto">
       <div class="text-center mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Questions</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
       </div>
       
       <div class="space-y-4">
