@@ -174,9 +174,9 @@
       -webkit-backdrop-filter: blur(12px);
     }
     .glass-nav {
-      background: rgba(241, 245, 249, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     /* Nav link hover effects */
@@ -493,9 +493,42 @@
     .industry-stats-bg {
       transition: opacity 0.15s ease-in-out;
     }
+
+    /* Marquee animation for trusted companies */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-container {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      animation: marquee 25s linear infinite;
+      width: fit-content;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .marquee-item {
+      flex-shrink: 0;
+      margin: 0 50px;
+      height: 80px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      vertical-align: middle;
+      background: transparent;
+    }
   </style>
 </head>
-<body class="text-gray-900 antialiased" style="background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 25%, #dbeafe 50%, #c7d2fe 75%, #e0e7ff 100%); background-attachment: fixed;">
+<body class="text-gray-900 antialiased" style="background: linear-gradient(180deg, #ffffff 0%, #fafafa 30%, #f5f5f5 70%, #fafafa 100%); background-attachment: fixed;">
 
   <!-- Navigation -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/50">
@@ -503,24 +536,22 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
         <a href="#" class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">T</span>
-          </div>
-          <span class="font-semibold text-lg text-slate-800">Turrant.ai</span>
+          <img src="images/Turrant.ai logo.webp" alt="Turrant.ai icon" class="h-8 w-auto">
+          <img src="images/turrant.ai side logo.webp" alt="Turrant.ai" class="h-5 w-auto">
         </a>
 
         <!-- Desktop Nav -->
         <div class="hidden md:flex items-center gap-1">
-          <a href="#how-it-works" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 rounded-lg">How It Works</a>
-          <a href="#industries" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 rounded-lg">Solutions</a>
-          <a href="#pricing" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 rounded-lg">Pricing</a>
-          <a href="#faq" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 rounded-lg">FAQ</a>
+          <a href="#how-it-works" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">How It Works</a>
+          <a href="#industries" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">Solutions</a>
+          <a href="#pricing" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">Pricing</a>
+          <a href="#faq" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">FAQ</a>
         </div>
 
         <!-- CTAs -->
         <div class="hidden md:flex items-center gap-4">
-          <a href="#" class="nav-link px-3 py-2 text-sm font-medium text-slate-600 rounded-lg">Login</a>
-          <a href="#demo" class="nav-cta inline-flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-white text-sm font-medium rounded-full">
+          <a href="#" class="nav-link px-3 py-2 text-base font-semibold text-slate-700 rounded-lg">Login</a>
+          <a href="https://calendar.app.google/MXWsJhtgVZPm2LAt8" target="_blank" rel="noopener noreferrer" class="nav-cta inline-flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-white text-base font-semibold rounded-full">
             Book Demo <span class="text-slate-300">→</span>
           </a>
         </div>
@@ -536,7 +567,7 @@
         <a href="#how-it-works" class="block py-3 px-3 text-slate-700 hover:text-blue-700 hover:bg-blue-50/50 rounded-lg transition-all duration-300">How It Works</a>
         <a href="#industries" class="block py-3 px-3 text-slate-700 hover:text-blue-700 hover:bg-blue-50/50 rounded-lg transition-all duration-300">Solutions</a>
         <a href="#pricing" class="block py-3 px-3 text-slate-700 hover:text-blue-700 hover:bg-blue-50/50 rounded-lg transition-all duration-300">Pricing</a>
-        <a href="#demo" class="nav-cta block mt-4 w-full text-center px-4 py-3 bg-slate-800 text-white rounded-full font-medium">Book Demo</a>
+        <a href="https://calendar.app.google/MXWsJhtgVZPm2LAt8" target="_blank" rel="noopener noreferrer" class="nav-cta block mt-4 w-full text-center px-4 py-3 bg-slate-800 text-white rounded-full font-medium">Book Demo</a>
       </div>
     </nav>
   </header>
@@ -559,7 +590,7 @@
         
         <!-- CTAs -->
         <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#demo" class="btn-shimmer inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg shadow-gray-900/20">
+          <a href="https://calendar.app.google/MXWsJhtgVZPm2LAt8" target="_blank" rel="noopener noreferrer" class="btn-shimmer inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg shadow-gray-900/20">
             Book a Demo <span>→</span>
           </a>
           <a href="#video" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-700 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all">
@@ -590,7 +621,7 @@
               </div>
               <div class="text-center">
                 <div class="text-5xl font-bold text-emerald-600">
-                  <span class="stat-number" data-target="60">0</span>%+
+                  <span class="stat-number" data-target="75">0</span>%+
                 </div>
                 <div class="mt-2 text-gray-500 font-medium">Higher Completion</div>
               </div>
@@ -611,40 +642,29 @@
         </div>
 
         <!-- Trusted By Section -->
-        <div class="mt-16 pt-10 border-t border-gray-100">
-          <!-- Inline Stats with Dividers -->
-          <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
-            <div class="flex items-center gap-2">
-              <span class="text-xl font-bold text-gray-900">500+</span>
-              <span class="text-sm text-gray-500">Businesses</span>
-            </div>
-            <span class="text-gray-300 hidden sm:inline">·</span>
-            <div class="flex items-center gap-2">
-              <span class="text-xl font-bold text-gray-900">10M+</span>
-              <span class="text-sm text-gray-500">Documents</span>
-            </div>
-            <span class="text-gray-300 hidden sm:inline">·</span>
-            <div class="flex items-center gap-2">
-              <span class="text-xl font-bold text-gray-900">50+</span>
-              <span class="text-sm text-gray-500">Enterprise Clients</span>
-            </div>
-          </div>
+        <div class="mt-8 pt-4 pb-2 border-t border-gray-100 text-center">
+          <p class="text-base text-gray-700 mb-4 uppercase tracking-widest font-bold">Trusted by leading enterprises</p>
 
-          <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest font-medium">Trusted by leading enterprises</p>
-
-          <!-- Company Logos as Text -->
-          <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">ABC FINANCE</span>
-            <span class="text-gray-300">·</span>
-            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">XYZ INSURANCE</span>
-            <span class="text-gray-300">·</span>
-            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">PQR MICROFINANCE</span>
-            <span class="text-gray-300">·</span>
-            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">LMN BANK</span>
-            <span class="text-gray-300">·</span>
-            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">DEF CORP</span>
-            <span class="text-gray-300">·</span>
-            <span class="text-sm font-bold text-gray-400 tracking-wide hover:text-gray-600 transition-colors cursor-default">GLOBALTRADE</span>
+          <!-- Company Logos Marquee -->
+          <div class="marquee-container">
+            <div class="marquee-track">
+              <!-- First set of logos -->
+              <img src="logos/1ckbirla.png" alt="CK Birla" class="marquee-item">
+              <img src="logos/bazaarx-logo.png" alt="BazaarX" class="marquee-item">
+              <img src="logos/icpro-logo-1.png" alt="ICPro" class="marquee-item">
+              <img src="logos/Khaitan-Legal-Associates-jpg.webp" alt="Khaitan Legal" class="marquee-item">
+              <img src="logos/polite-enterprises.webp" alt="Polite Enterprises" class="marquee-item">
+              <img src="logos/sattva group.webp" alt="Sattva Group" class="marquee-item">
+              <img src="logos/uberlyfe-logo.jpg" alt="Uberlyfe" class="marquee-item">
+              <!-- Duplicate set for seamless loop -->
+              <img src="logos/1ckbirla.png" alt="CK Birla" class="marquee-item">
+              <img src="logos/bazaarx-logo.png" alt="BazaarX" class="marquee-item">
+              <img src="logos/icpro-logo-1.png" alt="ICPro" class="marquee-item">
+              <img src="logos/Khaitan-Legal-Associates-jpg.webp" alt="Khaitan Legal" class="marquee-item">
+              <img src="logos/polite-enterprises.webp" alt="Polite Enterprises" class="marquee-item">
+              <img src="logos/sattva group.webp" alt="Sattva Group" class="marquee-item">
+              <img src="logos/uberlyfe-logo.jpg" alt="Uberlyfe" class="marquee-item">
+            </div>
           </div>
         </div>
       </div>
@@ -652,7 +672,7 @@
   </section>
 
   <!-- Video Section -->
-  <section id="video" class="py-20 px-4 sm:px-6 lg:px-8">
+  <section id="video" class="pt-4 pb-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">See Turrant.ai in Action</h2>
@@ -1522,9 +1542,9 @@
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Email support</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Credits roll over</li>
           </ul>
-          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Start free</a>
+          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Start 30-day free trial</a>
         </div>
-        
+
         <!-- Standard -->
         <div class="pricing-card rounded-2xl p-6 bg-white border border-gray-200">
           <div class="text-center mb-6">
@@ -1545,9 +1565,9 @@
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Priority support</li>
             <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Credits roll over</li>
           </ul>
-          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Start free</a>
+          <a href="#" class="block w-full py-3 bg-gray-900 text-white rounded-full text-center font-medium hover:bg-gray-800 transition-all">Start 30-day free trial</a>
         </div>
-        
+
         <!-- Premium (Highlighted) -->
         <div class="pricing-card-featured relative rounded-2xl p-6 bg-gray-900 text-white ring-4 ring-emerald-500">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-medium rounded-full">Most Popular</div>
@@ -1569,9 +1589,9 @@
             <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Dedicated support</li>
             <li class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Credits roll over</li>
           </ul>
-          <a href="#" class="block w-full py-3 bg-white text-gray-900 rounded-full text-center font-medium hover:bg-gray-100 transition-all">Start free</a>
+          <a href="#" class="block w-full py-3 bg-white text-gray-900 rounded-full text-center font-medium hover:bg-gray-100 transition-all">Start 30-day free trial</a>
         </div>
-        
+
         <!-- Enterprise -->
         <div class="pricing-card rounded-2xl p-6 bg-white border border-gray-200">
           <div class="text-center mb-6">
@@ -1595,7 +1615,7 @@
         </div>
       </div>
       
-      <p class="text-center mt-8 text-gray-500">14-day free trial • No credit card required • Cancel anytime</p>
+      <p class="text-center mt-8 text-gray-700 text-lg font-semibold">Cancel Anytime. No Questions Asked.</p>
     </div>
   </section>
 
@@ -1666,7 +1686,7 @@
         <a href="#" class="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg shadow-gray-900/20">
           Start Free Trial <span>→</span>
         </a>
-        <a href="#" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-700 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all">
+        <a href="https://calendar.app.google/MXWsJhtgVZPm2LAt8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-700 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all">
           Book a Demo
         </a>
       </div>
@@ -1679,10 +1699,8 @@
       <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
         <div class="col-span-2 md:col-span-1">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-              <span class="text-white font-bold text-sm">T</span>
-            </div>
-            <span class="font-semibold text-lg">Turrant.ai</span>
+            <img src="images/Turrant.ai logo.webp" alt="Turrant.ai" class="h-8 w-auto">
+            <img src="images/turrant.ai side logo.webp" alt="Turrant.ai" class="h-5 w-auto brightness-0 invert">
           </div>
           <p class="text-gray-400 text-sm">AI-powered document collection</p>
         </div>
