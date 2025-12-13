@@ -541,14 +541,33 @@
         <!-- Desktop Nav -->
         <div class="hidden md:flex items-center gap-1">
           <a href="#how-it-works" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">How It Works</a>
-          <a href="#industries" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">Solutions</a>
+          
+          <!-- Solutions Dropdown -->
+          <div class="relative group">
+            <button class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg flex items-center gap-1">
+              Solutions
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div class="py-2">
+                <a href="/hr.html" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition">HR & Recruitment</a>
+                <a href="/finance.html" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition">Finance</a>
+                <a href="/insurance.html" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition">Insurance</a>
+                <a href="/travel.html" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition">Travel & Visa</a>
+                <a href="/logistics.html" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition">Logistics & Supply Chain</a>
+                <a href="/education.html" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition">Education</a>
+              </div>
+            </div>
+          </div>
+          
           <a href="#pricing" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">Pricing</a>
           <a href="#faq" class="nav-link px-4 py-2 text-base font-semibold text-slate-700 rounded-lg">FAQ</a>
         </div>
 
         <!-- CTAs -->
         <div class="hidden md:flex items-center gap-4">
-          <a href="#" class="nav-link px-3 py-2 text-base font-semibold text-slate-700 rounded-lg">Login</a>
           <a href="https://calendar.app.google/MXWsJhtgVZPm2LAt8" target="_blank" rel="noopener noreferrer" class="nav-cta inline-flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-white text-base font-semibold rounded-full">
             Book Demo <span class="text-slate-300">→</span>
           </a>
@@ -577,7 +596,7 @@
         <!-- Headline -->
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1]">
           Stop Chasing Documents.<br>
-          Start Collecting <span class="text-shimmer">Smarter.</span>
+          <span class="text-shimmer">Start Collecting Smarter.</span>
         </h1>
         
         <!-- Subheadline -->
@@ -640,13 +659,14 @@
         </div>
 
         <!-- Trusted By Section -->
-        <div class="mt-8 pt-4 pb-2 border-t border-gray-100 text-center">
-          <p class="text-base text-gray-700 mb-4 uppercase tracking-widest font-bold">Trusted by leading enterprises</p>
+        <div class="mt-8 pt-4 pb-2 border-t border-gray-100">
+          <div class="max-w-5xl mx-auto text-center">
+            <p class="text-base text-gray-700 mb-4 uppercase tracking-widest font-bold">Active Engagement with</p>
 
-          <!-- Company Logos Marquee - Container matches video width (1000px) -->
-          <div class="mx-auto" style="max-width: 1000px;">
-            <div class="marquee-container">
-              <div class="marquee-track">
+            <!-- Company Logos Marquee - Container matches video width (1000px) -->
+            <div class="mx-auto" style="max-width: 1000px;">
+              <div class="marquee-container">
+                <div class="marquee-track">
                 <!-- First set of logos -->
                 <img src="logos-branded/1ckbirla-branded.png" alt="CK Birla" class="marquee-item">
                 <img src="logos-branded/bazaarx-logo-branded.png" alt="BazaarX" class="marquee-item">
@@ -664,6 +684,7 @@
                 <img src="logos-branded/sattva_group-branded.png" alt="Sattva Group" class="marquee-item">
                 <img src="logos-branded/uberlyfe-logo-branded.png" alt="Uberlyfe" class="marquee-item">
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -803,114 +824,144 @@
   </section>
 
   <!-- How It Works Section -->
-  <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8">
+  <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">How turrant.ai Works</h2>
-        <p class="mt-4 text-lg text-gray-600">From setup to insights in six steps</p>
+      <div class="text-center mb-20">
+        <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">How turrant.ai Works</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">From setup to insights in six simple steps</p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Step 1 -->
-        <div class="how-it-works-card bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-sm font-mono text-emerald-600">01</span>
-            <div class="icon-wrapper rounded-xl flex items-center justify-center">
-              <i data-lucide="settings" class="w-6 h-6 text-emerald-600"></i>
+      <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+        <!-- Left Column: Steps (Scrollable) - Takes 2 columns -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Step 1 -->
+          <div class="step-item how-it-works-card bg-white rounded-xl p-6 shadow-sm border-2 border-gray-200 transition-all duration-500" data-step="1">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <span class="text-sm font-bold text-emerald-600">01</span>
+              </div>
+              <div class="icon-wrapper rounded-lg flex items-center justify-center">
+                <i data-lucide="settings" class="w-5 h-5 text-emerald-600"></i>
+              </div>
             </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Configure</h3>
+            <p class="text-sm text-gray-600 mb-3">Set up your document requirements, validation rules, and approval workflows. No code required.</p>
+            <ul class="space-y-1.5 text-xs text-gray-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> 50+ Indian document templates</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Custom validation logic</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Multi-step approvals</li>
+            </ul>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Configure</h3>
-          <p class="text-gray-600 mb-4">Set up your document requirements, validation rules, and approval workflows. No code required.</p>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 50+ Indian document templates</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom validation logic</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Multi-step approvals</li>
-          </ul>
+          
+          <!-- Step 2 -->
+          <div class="step-item how-it-works-card bg-white rounded-xl p-6 shadow-sm border-2 border-gray-200 transition-all duration-500" data-step="2">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <span class="text-sm font-bold text-emerald-600">02</span>
+              </div>
+              <div class="icon-wrapper rounded-lg flex items-center justify-center">
+                <i data-lucide="message-square" class="w-5 h-5 text-emerald-600"></i>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Collect</h3>
+            <p class="text-sm text-gray-600 mb-3">AI agents guide your customers through document submission via WhatsApp.</p>
+            <ul class="space-y-1.5 text-xs text-gray-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Conversational AI</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Smart reminders</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> No app downloads</li>
+            </ul>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="step-item how-it-works-card bg-white rounded-xl p-6 shadow-sm border-2 border-gray-200 transition-all duration-500" data-step="3">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <span class="text-sm font-bold text-emerald-600">03</span>
+              </div>
+              <div class="icon-wrapper rounded-lg flex items-center justify-center">
+                <i data-lucide="scan" class="w-5 h-5 text-emerald-600"></i>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Extract</h3>
+            <p class="text-sm text-gray-600 mb-3">99% accurate OCR reads every document — even blurry photos — and extracts data automatically.</p>
+            <ul class="space-y-1.5 text-xs text-gray-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> 10M+ documents trained</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Handwritten text support</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Auto image correction</li>
+            </ul>
+          </div>
+          
+          <!-- Step 4 -->
+          <div class="step-item how-it-works-card bg-white rounded-xl p-6 shadow-sm border-2 border-gray-200 transition-all duration-500" data-step="4">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <span class="text-sm font-bold text-emerald-600">04</span>
+              </div>
+              <div class="icon-wrapper rounded-lg flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Validate</h3>
+            <p class="text-sm text-gray-600 mb-3">Real-time verification through government APIs plus AI-powered fraud detection.</p>
+            <ul class="space-y-1.5 text-xs text-gray-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Aadhaar, PAN, GST</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Tampering detection</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Anomaly detection</li>
+            </ul>
+          </div>
+          
+          <!-- Step 5 -->
+          <div class="step-item how-it-works-card bg-white rounded-xl p-6 shadow-sm border-2 border-gray-200 transition-all duration-500" data-step="5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <span class="text-sm font-bold text-emerald-600">05</span>
+              </div>
+              <div class="icon-wrapper rounded-lg flex items-center justify-center">
+                <i data-lucide="search" class="w-5 h-5 text-emerald-600"></i>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Query</h3>
+            <p class="text-sm text-gray-600 mb-3">Ask questions in plain English. Get instant answers from your collected data.</p>
+            <ul class="space-y-1.5 text-xs text-gray-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Natural language queries</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Real-time insights</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Custom dashboards</li>
+            </ul>
+          </div>
+          
+          <!-- Step 6 -->
+          <div class="step-item how-it-works-card bg-white rounded-xl p-6 shadow-sm border-2 border-gray-200 transition-all duration-500" data-step="6">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <span class="text-sm font-bold text-emerald-600">06</span>
+              </div>
+              <div class="icon-wrapper rounded-lg flex items-center justify-center">
+                <i data-lucide="plug" class="w-5 h-5 text-emerald-600"></i>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Integrate</h3>
+            <p class="text-sm text-gray-600 mb-3">Push verified data to your CRM, LOS, or any system via native integrations or API.</p>
+            <ul class="space-y-1.5 text-xs text-gray-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Salesforce, HubSpot, Zoho</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> REST API & Webhooks</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> DigiLocker, Karza</li>
+            </ul>
+          </div>
         </div>
-        
-        <!-- Step 2 -->
-        <div class="how-it-works-card bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-sm font-mono text-emerald-600">02</span>
-            <div class="icon-wrapper rounded-xl flex items-center justify-center">
-              <i data-lucide="message-square" class="w-6 h-6 text-emerald-600"></i>
+
+        <!-- Right Column: Sticky Image Container -->
+        <div class="lg:col-span-3 lg:sticky lg:top-20">
+          <div class="relative bg-gradient-to-br from-emerald-50 to-white rounded-3xl shadow-2xl overflow-hidden border-2 border-emerald-100 p-3">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+            <div id="step-image-container" class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
+              <img id="step-image-1" src="steps/1. configure.png" alt="Configure Step" class="absolute inset-0 w-full h-full object-contain transition-all duration-700 opacity-100">
+              <img id="step-image-2" src="steps/2. collect.jpg" alt="Collect Step" class="absolute inset-0 w-full h-full object-contain transition-all duration-700 opacity-0">
+              <img id="step-image-3" src="steps/3. extract.png" alt="Extract Step" class="absolute inset-0 w-full h-full object-contain transition-all duration-700 opacity-0">
+              <img id="step-image-4" src="steps/4. validate.png" alt="Validate Step" class="absolute inset-0 w-full h-full object-contain transition-all duration-700 opacity-0">
+              <img id="step-image-5" src="steps/5. query.png" alt="Query Step" class="absolute inset-0 w-full h-full object-contain transition-all duration-700 opacity-0">
+              <img id="step-image-6" src="steps/6. integrate.png" alt="Integrate Step" class="absolute inset-0 w-full h-full object-contain transition-all duration-700 opacity-0">
             </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Collect</h3>
-          <p class="text-gray-600 mb-4">AI agents guide your customers through document submission via WhatsApp.</p>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Conversational AI</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Smart reminders</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> No app downloads</li>
-          </ul>
-        </div>
-        
-        <!-- Step 3 -->
-        <div class="how-it-works-card bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-sm font-mono text-emerald-600">03</span>
-            <div class="icon-wrapper rounded-xl flex items-center justify-center">
-              <i data-lucide="scan" class="w-6 h-6 text-emerald-600"></i>
-            </div>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Extract</h3>
-          <p class="text-gray-600 mb-4">99% accurate OCR reads every document — even blurry photos — and extracts data automatically.</p>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 10M+ documents trained</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Handwritten text support</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Auto image correction</li>
-          </ul>
-        </div>
-        
-        <!-- Step 4 -->
-        <div class="how-it-works-card bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-sm font-mono text-emerald-600">04</span>
-            <div class="icon-wrapper rounded-xl flex items-center justify-center">
-              <i data-lucide="shield-check" class="w-6 h-6 text-emerald-600"></i>
-            </div>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Validate</h3>
-          <p class="text-gray-600 mb-4">Real-time verification through government APIs plus AI-powered fraud detection.</p>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Aadhaar, PAN, GST</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Tampering detection</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Anomaly detection</li>
-          </ul>
-        </div>
-        
-        <!-- Step 5 -->
-        <div class="how-it-works-card bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-sm font-mono text-emerald-600">05</span>
-            <div class="icon-wrapper rounded-xl flex items-center justify-center">
-              <i data-lucide="search" class="w-6 h-6 text-emerald-600"></i>
-            </div>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Query</h3>
-          <p class="text-gray-600 mb-4">Ask questions in plain English. Get instant answers from your collected data.</p>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Natural language queries</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Real-time insights</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom dashboards</li>
-          </ul>
-        </div>
-        
-        <!-- Step 6 -->
-        <div class="how-it-works-card bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-sm font-mono text-emerald-600">06</span>
-            <div class="icon-wrapper rounded-xl flex items-center justify-center">
-              <i data-lucide="plug" class="w-6 h-6 text-emerald-600"></i>
-            </div>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Integrate</h3>
-          <p class="text-gray-600 mb-4">Push verified data to your CRM, LOS, or any system via native integrations or API.</p>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Salesforce, HubSpot, Zoho</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> REST API & Webhooks</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> DigiLocker, Karza</li>
-          </ul>
         </div>
       </div>
     </div>
@@ -994,11 +1045,12 @@
       
       <!-- Industry Tabs -->
       <div class="flex flex-wrap justify-center gap-2 mb-12">
-        <button onclick="showIndustry('banking')" id="tab-banking" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-gray-900 text-white">Banking & NBFC</button>
+        <button onclick="showIndustry('banking')" id="tab-banking" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-gray-900 text-white">Finance</button>
         <button onclick="showIndustry('insurance')" id="tab-insurance" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Insurance</button>
         <button onclick="showIndustry('hr')" id="tab-hr" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">HR & Staffing</button>
-        <button onclick="showIndustry('realestate')" id="tab-realestate" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Real Estate</button>
-        <button onclick="showIndustry('education')" id="tab-education" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Supply Chain</button>
+        <button onclick="showIndustry('travel')" id="tab-travel" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Travel & Visa</button>
+        <button onclick="showIndustry('logistics')" id="tab-logistics" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Logistics</button>
+        <button onclick="showIndustry('education')" id="tab-education" class="industry-tab px-6 py-3 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Education</button>
       </div>
       
       <!-- Industry Content with Navigation Arrows -->
@@ -1040,7 +1092,7 @@
                   </div>
                 </div>
 
-                <a href="#" class="inline-flex items-center gap-2 text-emerald-600 font-medium hover:text-emerald-700">Read case study <span>→</span></a>
+                <a href="#" id="industry-link" class="inline-flex items-center gap-2 text-emerald-600 font-medium hover:text-emerald-700">Read More <span>→</span></a>
               </div>
             </div>
 
@@ -1086,7 +1138,8 @@
         docs: ["PAN", "Aadhaar", "Bank Statements", "ITR", "Salary Slips", "GST Certificates"],
         metrics: [{ value: "80%", label: "Faster TAT" }, { value: "4 hrs", label: "Avg completion" }, { value: "₹100", label: "Per application" }],
         bgImage: "images/Gemini Bank New mockup.png",
-        bgPosition: "top center"
+        bgPosition: "top center",
+        link: "/finance.html"
       },
       insurance: {
         headline: "Streamline onboarding. Accelerate claims. Reduce fraud.",
@@ -1095,7 +1148,8 @@
         docs: ["ID Proof", "Medical Reports", "Hospital Bills", "FIR Copies", "Vehicle RC", "Policy Documents"],
         metrics: [{ value: "3x", label: "Faster claims" }, { value: "40%", label: "Fraud reduced" }, { value: "95%", label: "Satisfaction" }],
         bgImage: "images/Insurance company mockup.png",
-        bgPosition: "top center"
+        bgPosition: "top center",
+        link: "/insurance.html"
       },
       hr: {
         headline: "Onboard employees in hours, not weeks.",
@@ -1104,30 +1158,43 @@
         docs: ["Resume", "ID Proofs", "Education Certificates", "Experience Letters", "Bank Details", "PF Forms"],
         metrics: [{ value: "70%", label: "Faster" }, { value: "Day 1", label: "Docs complete" }, { value: "Zero", label: "Follow-ups" }],
         bgImage: "images/HR-Employee mock up.png",
-        bgPosition: "center center"
+        bgPosition: "center center",
+        link: "/hr.html"
       },
-      realestate: {
-        headline: "Close deals faster with complete documentation.",
-        desc: "Collect buyer KYC, property documents, and signatures through simple WhatsApp conversations.",
-        usecases: ["Buyer KYC collection", "Property document verification", "Rental agreements", "Society NOC collection"],
-        docs: ["ID Proofs", "Property Papers", "Sale Deeds", "Encumbrance Certificates", "Society NOCs"],
-        metrics: [{ value: "50%", label: "Faster closings" }, { value: "100%", label: "Doc completeness" }, { value: "2 days", label: "Collection time" }],
+      travel: {
+        headline: "Simplify travel documentation with AI automation.",
+        desc: "Process visa applications, passport renewals, and travel documents via WhatsApp.",
+        usecases: ["Visa applications", "Passport services", "Travel insurance", "Document verification"],
+        docs: ["Passport copy", "Financial statements", "Travel itinerary", "Invitation letters", "ID documents"],
+        metrics: [{ value: "80%", label: "Faster processing" }, { value: "3 days", label: "Avg completion" }, { value: "99%", label: "Accuracy" }],
         bgImage: "images/Real_estate mock up.png",
-        bgPosition: "center center"
+        bgPosition: "center center",
+        link: "/travel.html"
+      },
+      logistics: {
+        headline: "Automate logistics documentation with AI.",
+        desc: "Process shipping documents, customs clearance, and vendor onboarding via WhatsApp.",
+        usecases: ["Shipping documentation", "Customs clearance", "Vendor onboarding", "Freight invoicing"],
+        docs: ["Bill of Lading", "Commercial Invoice", "Customs Declaration", "GST Certificates", "Trade Licenses"],
+        metrics: [{ value: "85%", label: "Faster processing" }, { value: "Zero", label: "Manual entry" }, { value: "100%", label: "Compliance" }],
+        bgImage: "images/Supply chain mock up.png",
+        bgPosition: "center center",
+        link: "/logistics.html"
       },
       education: {
-        headline: "Streamline vendor onboarding. Ensure compliance.",
-        desc: "Collect vendor documents, verify credentials, and manage supplier compliance through WhatsApp.",
-        usecases: ["Vendor onboarding & KYC", "Purchase order documentation", "Quality certification collection", "Compliance document tracking"],
-        docs: ["GST Certificates", "Trade Licenses", "Quality Certs", "Bank Details", "MSME Registration", "ISO Certificates"],
-        metrics: [{ value: "65%", label: "Faster onboarding" }, { value: "100%", label: "Compliance rate" }, { value: "2 days", label: "Vendor activation" }],
-        bgImage: "images/Supply chain mock up.png",
-        bgPosition: "center center"
+        headline: "Transform education administration with AI.",
+        desc: "Streamline student enrollment, transcripts, and credentials via WhatsApp.",
+        usecases: ["Student enrollment", "Transcript requests", "Teacher certification", "Scholarship applications"],
+        docs: ["Birth certificate", "School records", "Degree certificates", "Transcripts", "ID documents"],
+        metrics: [{ value: "75%", label: "Faster enrollment" }, { value: "Day 1", label: "Processing" }, { value: "100%", label: "Digital" }],
+        bgImage: "images/HR-Employee mock up.png",
+        bgPosition: "center center",
+        link: "/education.html"
       }
     };
 
     // Industry navigation
-    const industryKeys = ['banking', 'insurance', 'hr', 'realestate', 'education'];
+    const industryKeys = ['banking', 'insurance', 'hr', 'travel', 'logistics', 'education'];
     let currentIndustryIndex = 0;
 
     function navigateIndustry(direction) {
@@ -1150,6 +1217,9 @@
       document.getElementById('industry-usecases').innerHTML = data.usecases.map(u => `<li class="flex items-center gap-2 text-gray-700"><span class="text-emerald-500">•</span> ${u}</li>`).join('');
       document.getElementById('industry-docs').innerHTML = data.docs.map(d => `<span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">${d}</span>`).join('');
       document.getElementById('industry-metrics').innerHTML = data.metrics.map(m => `<div class="text-center"><div class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">${m.value}</div><div class="mt-1 text-xs sm:text-sm text-gray-600">${m.label}</div></div>`).join('');
+      
+      // Update Read More link
+      document.getElementById('industry-link').href = data.link;
 
       // Update background image with fade effect
       const imageBg = document.getElementById('industry-image-bg');
@@ -1539,12 +1609,14 @@
         </div>
         
         <div>
-          <h3 class="font-semibold text-gray-300 mb-4">Solutions</h3>
+          <h3 class="font-semibold text-gray-300 mb-4">Industries</h3>
           <ul class="space-y-2 text-gray-400 text-sm">
-            <li><a href="#" class="hover:text-white">Banking</a></li>
-            <li><a href="#" class="hover:text-white">Insurance</a></li>
-            <li><a href="#" class="hover:text-white">HR</a></li>
-            <li><a href="#" class="hover:text-white">Real Estate</a></li>
+            <li><a href="/hr.html" class="hover:text-white">HR</a></li>
+            <li><a href="/finance.html" class="hover:text-white">Finance</a></li>
+            <li><a href="/insurance.html" class="hover:text-white">Insurance</a></li>
+            <li><a href="/travel.html" class="hover:text-white">Travel</a></li>
+            <li><a href="/logistics.html" class="hover:text-white">Logistics</a></li>
+            <li><a href="/education.html" class="hover:text-white">Education</a></li>
           </ul>
         </div>
         
@@ -1671,6 +1743,88 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     lucide.createIcons();
+  </script>
+
+  <!-- How It Works Scroll Animation -->
+  <script>
+    let currentActiveStep = 1;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: [0, 0.5, 1]
+    };
+
+    function activateStep(stepNumber) {
+      if (currentActiveStep === stepNumber) return;
+      
+      currentActiveStep = stepNumber;
+
+      document.querySelectorAll('.step-item').forEach((item, index) => {
+        const step = index + 1;
+        const isPrevious = step === stepNumber - 1;
+        const isNext = step === stepNumber + 1;
+        
+        if (step === stepNumber) {
+          item.classList.remove('border-gray-200', 'shadow-sm');
+          item.classList.add('border-emerald-500', 'shadow-xl');
+          item.style.transform = 'scale(1.05)';
+          item.style.opacity = '1';
+          item.style.filter = 'blur(0px)';
+          item.style.background = 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)';
+        } else if (isPrevious || isNext) {
+          item.classList.remove('border-emerald-500', 'shadow-xl');
+          item.classList.add('border-gray-200', 'shadow-sm');
+          item.style.transform = 'scale(0.95)';
+          item.style.opacity = '0.6';
+          item.style.filter = 'blur(1px)';
+          item.style.background = '#ffffff';
+        } else {
+          item.classList.remove('border-emerald-500', 'shadow-xl');
+          item.classList.add('border-gray-200', 'shadow-sm');
+          item.style.transform = 'scale(0.9)';
+          item.style.opacity = '0.3';
+          item.style.filter = 'blur(2px)';
+          item.style.background = '#ffffff';
+        }
+      });
+
+      for (let i = 1; i <= 6; i++) {
+        const img = document.getElementById(`step-image-${i}`);
+        if (img) {
+          if (i === stepNumber) {
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1)';
+          } else {
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.95)';
+          }
+        }
+      }
+    }
+
+    const stepObserver = new IntersectionObserver((entries) => {
+      let mostVisibleEntry = null;
+      let maxRatio = 0;
+
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          mostVisibleEntry = entry;
+        }
+      });
+
+      if (mostVisibleEntry) {
+        const stepNumber = parseInt(mostVisibleEntry.target.getAttribute('data-step'));
+        activateStep(stepNumber);
+      }
+    }, observerOptions);
+
+    document.querySelectorAll('.step-item').forEach(step => {
+      stepObserver.observe(step);
+    });
+
+    activateStep(1);
   </script>
 
 </body>
