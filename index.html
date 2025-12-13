@@ -518,13 +518,11 @@
 
     .marquee-item {
       flex-shrink: 0;
-      margin: 0 50px;
-      height: 80px;
+      margin: 0 40px;
+      height: 60px;
       width: auto;
-      max-width: 200px;
       object-fit: contain;
       vertical-align: middle;
-      background: transparent;
     }
   </style>
 </head>
@@ -649,21 +647,21 @@
           <div class="marquee-container">
             <div class="marquee-track">
               <!-- First set of logos -->
-              <img src="logos/1ckbirla.png" alt="CK Birla" class="marquee-item">
-              <img src="logos/bazaarx-logo.png" alt="BazaarX" class="marquee-item">
-              <img src="logos/icpro-logo-1.png" alt="ICPro" class="marquee-item">
-              <img src="logos/Khaitan-Legal-Associates-jpg.webp" alt="Khaitan Legal" class="marquee-item">
-              <img src="logos/polite-enterprises.webp" alt="Polite Enterprises" class="marquee-item">
-              <img src="logos/sattva group.webp" alt="Sattva Group" class="marquee-item">
-              <img src="logos/uberlyfe-logo.jpg" alt="Uberlyfe" class="marquee-item">
+              <img src="logos-branded/1ckbirla-branded.png" alt="CK Birla" class="marquee-item">
+              <img src="logos-branded/bazaarx-logo-branded.png" alt="BazaarX" class="marquee-item">
+              <img src="logos-branded/icpro-logo-1-branded.png" alt="ICPro" class="marquee-item">
+              <img src="logos-branded/Khaitan-Legal-Associates-jpg-branded.png" alt="Khaitan Legal" class="marquee-item">
+              <img src="logos-branded/polite-enterprises-branded.png" alt="Polite Enterprises" class="marquee-item">
+              <img src="logos-branded/sattva_group-branded.png" alt="Sattva Group" class="marquee-item">
+              <img src="logos-branded/uberlyfe-logo-branded.png" alt="Uberlyfe" class="marquee-item">
               <!-- Duplicate set for seamless loop -->
-              <img src="logos/1ckbirla.png" alt="CK Birla" class="marquee-item">
-              <img src="logos/bazaarx-logo.png" alt="BazaarX" class="marquee-item">
-              <img src="logos/icpro-logo-1.png" alt="ICPro" class="marquee-item">
-              <img src="logos/Khaitan-Legal-Associates-jpg.webp" alt="Khaitan Legal" class="marquee-item">
-              <img src="logos/polite-enterprises.webp" alt="Polite Enterprises" class="marquee-item">
-              <img src="logos/sattva group.webp" alt="Sattva Group" class="marquee-item">
-              <img src="logos/uberlyfe-logo.jpg" alt="Uberlyfe" class="marquee-item">
+              <img src="logos-branded/1ckbirla-branded.png" alt="CK Birla" class="marquee-item">
+              <img src="logos-branded/bazaarx-logo-branded.png" alt="BazaarX" class="marquee-item">
+              <img src="logos-branded/icpro-logo-1-branded.png" alt="ICPro" class="marquee-item">
+              <img src="logos-branded/Khaitan-Legal-Associates-jpg-branded.png" alt="Khaitan Legal" class="marquee-item">
+              <img src="logos-branded/polite-enterprises-branded.png" alt="Polite Enterprises" class="marquee-item">
+              <img src="logos-branded/sattva_group-branded.png" alt="Sattva Group" class="marquee-item">
+              <img src="logos-branded/uberlyfe-logo-branded.png" alt="Uberlyfe" class="marquee-item">
             </div>
           </div>
         </div>
@@ -677,13 +675,17 @@
       <div class="text-center mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">See Turrant.ai in Action</h2>
       </div>
-      <div class="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-        <div class="absolute inset-0 flex items-center justify-center">
-          <button class="group relative w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
-            <i data-lucide="play" class="w-8 h-8 text-white ml-1"></i>
-          </button>
-        </div>
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm opacity-80">2 min overview</div>
+      <div class="flex justify-center">
+        <iframe
+          id="vp1WBJM6"
+          title="Video Player"
+          width="100%"
+          height="600"
+          frameborder="0"
+          src="https://player.animoto.com/play.html?w=swf/production/vp1&e=1765603318&f=WBJM6jIN0ARupDUgy0wEJw&d=0&m=p&r=720p&volume=100&start_res=1080p&i=m&asset_domain=s3-p.animoto.com&animoto_domain=animoto.com&options="
+          allowfullscreen
+          style="max-width: 1000px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+        </iframe>
       </div>
     </div>
   </section>
@@ -1615,7 +1617,13 @@
         </div>
       </div>
       
-      <p class="text-center mt-8 text-gray-700 text-lg font-semibold">Cancel Anytime. No Questions Asked.</p>
+      <p class="text-center mt-8 text-gray-700 text-lg font-semibold">
+        <span>Cancel Anytime</span>
+        <span class="inline-block mx-3 align-middle">·</span>
+        <span>No Questions Asked</span>
+        <span class="inline-block mx-3 align-middle">·</span>
+        <span>No Credit Card Required</span>
+      </p>
     </div>
   </section>
 
@@ -1751,7 +1759,7 @@
         <div class="flex items-center gap-4">
           <a href="mailto:hello@turrant.ai" class="text-gray-400 hover:text-white text-sm">hello@turrant.ai</a>
           <div class="flex gap-4">
-            <a href="#" class="text-gray-400 hover:text-white">
+            <a href="https://www.linkedin.com/showcase/turrant-ai/posts/?feedView=all" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
             <a href="#" class="text-gray-400 hover:text-white">
