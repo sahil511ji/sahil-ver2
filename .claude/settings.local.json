@@ -12,7 +12,9 @@
       "Bash(cd:*)",
       "Bash(git checkout:*)",
       "Bash(dir \"C:\\Projects\\turrant.ai-website\\images\" /b)",
-      "Bash(dir \"C:\\Projects\\turrant.ai-website\\logos\" /b)"
+      "Bash(dir \"C:\\Projects\\turrant.ai-website\\logos\" /b)",
+      "Bash(grep:*)",
+      "Bash(lsof:*)"
     ]
   }
 }
