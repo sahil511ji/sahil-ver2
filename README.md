@@ -1,16 +1,21 @@
-# Turrant.ai Blog
+# Turrant.ai Website & Blog
 
-A blog system for Turrant.ai built with static HTML, Tailwind CSS, and Supabase as the backend.
+AI-powered document collection platform website with integrated blog system. Built with FastAPI backend and static HTML frontend.
 
 ## Features
 
-- **Blog Listing** (`blog.html`) - Displays published blog posts with search and category filtering
-- **Blog Post** (`blog-post.html`) - Individual blog post page with full content, social sharing
-- **Blog Admin** (`blog-admin.html`) - Admin panel for managing blog posts
+### Website
+- **Landing Page** - Main marketing website for Turrant.ai
+- **Industry Pages** - Finance, Insurance, HR, Travel, Logistics, Education
+- **Clean URLs** - `/blog/my-post` instead of `blog-post.html?slug=my-post`
+
+### Blog System
+- **Blog Listing** - Published posts with search and category filtering
+- **Blog Posts** - Individual post pages with full content and social sharing
+- **Admin Panel** - Create, edit, delete posts with rich text editor
 
 ### Admin Features
 - Email/password authentication via Supabase Auth
-- Create, edit, and delete blog posts
 - Rich text editor (Quill.js)
 - Image upload with auto-compression
 - Category and tag management
@@ -19,15 +24,64 @@ A blog system for Turrant.ai built with static HTML, Tailwind CSS, and Supabase 
 
 ## Tech Stack
 
+- **Backend**: FastAPI (Python)
+- **Database**: Supabase (PostgreSQL)
 - **Frontend**: HTML, Tailwind CSS (CDN), Vanilla JavaScript
-- **Backend**: Supabase (PostgreSQL, Auth, Storage)
 - **Rich Text Editor**: Quill.js
 - **Icons**: Lucide Icons
 - **Fonts**: Plus Jakarta Sans (Google Fonts)
 
+## Project Structure
+
+```
+├── backend/
+│   ├── main.py              # FastAPI app entry point
+│   ├── config.py            # Environment configuration
+│   ├── routes/
+│   │   ├── pages.py         # Static page routes
+│   │   ├── blog.py          # Blog routes & API
+│   │   └── admin.py         # Admin routes & API
+│   └── services/
+│       └── supabase.py      # Supabase client
+├── frontend/
+│   ├── index.html           # Homepage
+│   ├── blog.html            # Blog listing
+│   ├── blog-post.html       # Individual post
+│   ├── blog-admin.html      # Admin panel
+│   ├── finance.html         # Industry pages...
+│   ├── images/              # Static images
+│   ├── logos/               # Company logos
+│   └── steps/               # How it works images
+├── requirements.txt         # Python dependencies
+├── .env                     # Environment variables (not in git)
+└── README.md
+```
+
 ## Setup
 
-### 1. Supabase Configuration
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/sahil511ji/sahil-ver2.git
+cd sahil-ver2
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure Environment
+
+Create a `.env` file in the root directory:
+
+```env
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=your-anon-key-here
+```
+
+### 4. Supabase Setup
 
 Create the following tables in your Supabase project:
 
@@ -66,88 +120,71 @@ CREATE TABLE blog_categories (
 
 #### Row Level Security (RLS)
 ```sql
--- Enable RLS
 ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE blog_categories ENABLE ROW LEVEL SECURITY;
 
--- Public read access for published posts
 CREATE POLICY "Public can read published posts" ON blog_posts
   FOR SELECT USING (published = true);
 
--- Public read access for categories
 CREATE POLICY "Public can read categories" ON blog_categories
   FOR SELECT USING (true);
 
--- Authenticated users can manage posts
 CREATE POLICY "Auth users can manage posts" ON blog_posts
   FOR ALL USING (auth.role() = 'authenticated');
-
--- Authenticated users can manage categories
-CREATE POLICY "Auth users can manage categories" ON blog_categories
-  FOR ALL USING (auth.role() = 'authenticated');
 ```
 
-#### Storage Bucket
-1. Create a bucket named `blog-images`
-2. Set it to **Public**
-3. Add policy for authenticated uploads
-
-### 2. Update Credentials
-
-Update the Supabase credentials in these files:
-- `blog.html`
-- `blog-post.html`
-- `blog-admin.html`
-
-```javascript
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-```
-
-### 3. Local Development
+### 5. Run Development Server
 
 ```bash
-# Install serve (if not installed)
-npm install
-
-# Start local server
-npm start
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Visit:
-- Blog: http://localhost:3000/blog.html
-- Admin: http://localhost:3000/blog-admin.html
+Visit: http://localhost:8000
 
-## File Structure
+## URL Routes
 
-```
-├── blog.html           # Blog listing page
-├── blog-post.html      # Individual blog post page
-├── blog-admin.html     # Admin panel
-├── index.html          # Main website
-├── images/             # Static images
-├── package.json        # npm scripts
-├── railway.json        # Railway deployment config
-└── README.md
-```
+| URL | Description |
+|-----|-------------|
+| `/` | Homepage |
+| `/blog` | Blog listing |
+| `/blog/{slug}` | Individual blog post |
+| `/admin` | Admin panel |
+| `/finance` | Finance industry page |
+| `/insurance` | Insurance industry page |
+| `/hr` | HR industry page |
+| `/travel` | Travel industry page |
+| `/logistics` | Logistics industry page |
+| `/education` | Education industry page |
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/posts` | Get all published posts |
+| GET | `/api/posts/{slug}` | Get single post by slug |
+| GET | `/api/categories` | Get all categories |
+| GET | `/api/admin/posts` | Get all posts (admin) |
+| POST | `/api/admin/posts` | Create new post |
+| PUT | `/api/admin/posts/{id}` | Update post |
+| DELETE | `/api/admin/posts/{id}` | Delete post |
 
 ## Deployment
 
-### Railway
-The project is configured for Railway deployment. Push to main branch to auto-deploy.
+### Railway / Render
+```bash
+# Start command
+python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+```
 
-### Other Platforms
-Since this is a static site, it can be deployed to:
-- Netlify
-- Vercel
-- GitHub Pages
-- Any static file hosting
-
-## Brand Colors
-
-- Primary (Teal): `#003a37`
-- Accent (Green): `#16A085`
-- Light Green: `#10b981`
+### Docker
+```dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
 
 ## License
 
