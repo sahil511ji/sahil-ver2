@@ -14,7 +14,25 @@
       "Bash(dir \"C:\\Projects\\turrant.ai-website\\images\" /b)",
       "Bash(dir \"C:\\Projects\\turrant.ai-website\\logos\" /b)",
       "Bash(grep:*)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(move index.html frontend )",
+      "Bash(move blog.html frontend )",
+      "Bash(move:*)",
+      "Bash(move blog-admin.html frontend )",
+      "Bash(move finance.html frontend )",
+      "Bash(move insurance.html frontend )",
+      "Bash(move hr.html frontend )",
+      "Bash(move logistics.html frontend )",
+      "Bash(move education.html frontend )",
+      "Bash(move privacy-policy.html frontend)",
+      "Bash(pip install:*)",
+      "Bash(python -m uvicorn:*)",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(timeout /t 3)",
+      "Bash(cmd /c \"taskkill /F /PID 15076 & taskkill /F /PID 19080\")"
     ]
   }
 }
