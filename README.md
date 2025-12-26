@@ -2,6 +2,70 @@
 
 AI-powered document collection platform website with integrated blog system. Built with FastAPI backend and static HTML frontend.
 
+## Quick Start (Docker - Recommended)
+
+**This is the easiest way to run the project - works on any machine!**
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed
+
+### Steps
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/sahil511ji/sahil-ver2.git
+cd sahil-ver2
+
+# 2. Create .env file from example
+cp .env.example .env
+
+# 3. Edit .env and add your Supabase credentials
+# SUPABASE_URL=https://your-project.supabase.co
+# SUPABASE_ANON_KEY=your-key-here
+
+# 4. Run with Docker
+docker-compose up --build
+
+# 5. Open browser
+# http://localhost:8000
+```
+
+That's it! The app runs exactly the same on any machine.
+
+---
+
+## Alternative: Manual Setup (Without Docker)
+
+### Prerequisites
+- Python 3.11+
+- pip
+
+### Steps
+
+```bash
+# 1. Clone repository
+git clone https://github.com/sahil511ji/sahil-ver2.git
+cd sahil-ver2
+
+# 2. Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Create .env file
+cp .env.example .env
+# Edit .env with your Supabase credentials
+
+# 5. Run server
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+
+# 6. Open http://localhost:8000
+```
+
+---
+
 ## Features
 
 ### Website
@@ -24,12 +88,12 @@ AI-powered document collection platform website with integrated blog system. Bui
 
 ## Tech Stack
 
-- **Backend**: FastAPI (Python)
+- **Backend**: FastAPI (Python 3.11)
 - **Database**: Supabase (PostgreSQL)
 - **Frontend**: HTML, Tailwind CSS (CDN), Vanilla JavaScript
+- **Containerization**: Docker
 - **Rich Text Editor**: Quill.js
 - **Icons**: Lucide Icons
-- **Fonts**: Plus Jakarta Sans (Google Fonts)
 
 ## Project Structure
 
@@ -48,44 +112,30 @@ AI-powered document collection platform website with integrated blog system. Bui
 │   ├── blog.html            # Blog listing
 │   ├── blog-post.html       # Individual post
 │   ├── blog-admin.html      # Admin panel
-│   ├── finance.html         # Industry pages...
-│   ├── images/              # Static images
-│   ├── logos/               # Company logos
-│   └── steps/               # How it works images
+│   └── images/              # Static assets
+├── Dockerfile               # Docker image definition
+├── docker-compose.yml       # Docker compose config
 ├── requirements.txt         # Python dependencies
-├── .env                     # Environment variables (not in git)
+├── .env.example             # Environment template
 └── README.md
 ```
 
-## Setup
+## Environment Variables
 
-### 1. Clone Repository
+Create a `.env` file with:
 
-```bash
-git clone https://github.com/sahil511ji/sahil-ver2.git
-cd sahil-ver2
-```
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `SUPABASE_URL` | Your Supabase project URL | `https://abc123.supabase.co` |
+| `SUPABASE_ANON_KEY` | Your Supabase anon key | `eyJhbGciOiJIUzI1...` |
 
-### 2. Install Dependencies
+Get these from: **Supabase Dashboard → Project Settings → API**
 
-```bash
-pip install -r requirements.txt
-```
+## Supabase Setup
 
-### 3. Configure Environment
+Create these tables in your Supabase project:
 
-Create a `.env` file in the root directory:
-
-```env
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_ANON_KEY=your-anon-key-here
-```
-
-### 4. Supabase Setup
-
-Create the following tables in your Supabase project:
-
-#### `blog_posts` table
+### `blog_posts` table
 ```sql
 CREATE TABLE blog_posts (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -108,7 +158,7 @@ CREATE TABLE blog_posts (
 );
 ```
 
-#### `blog_categories` table
+### `blog_categories` table
 ```sql
 CREATE TABLE blog_categories (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -118,7 +168,7 @@ CREATE TABLE blog_categories (
 );
 ```
 
-#### Row Level Security (RLS)
+### Row Level Security (RLS)
 ```sql
 ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE blog_categories ENABLE ROW LEVEL SECURITY;
@@ -132,14 +182,6 @@ CREATE POLICY "Public can read categories" ON blog_categories
 CREATE POLICY "Auth users can manage posts" ON blog_posts
   FOR ALL USING (auth.role() = 'authenticated');
 ```
-
-### 5. Run Development Server
-
-```bash
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-Visit: http://localhost:8000
 
 ## URL Routes
 
@@ -170,21 +212,37 @@ Visit: http://localhost:8000
 
 ## Deployment
 
-### Railway / Render
+### Docker (Recommended)
 ```bash
-# Start command
-python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+docker-compose up -d
 ```
 
-### Docker
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+### Railway / Render
+Set these:
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+
+### Environment Variables
+Make sure to set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in your deployment platform.
+
+## Troubleshooting
+
+### "Module not found" errors
+```bash
+# Use Docker instead - it handles all dependencies
+docker-compose up --build
 ```
+
+### Port already in use
+```bash
+# Change port in docker-compose.yml or run:
+docker-compose down
+docker-compose up
+```
+
+### Supabase connection errors
+- Check your `.env` file has correct credentials
+- Make sure SUPABASE_ANON_KEY starts with `eyJ...`
 
 ## License
 

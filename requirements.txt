@@ -1,7 +1,16 @@
+# FastAPI and server
 fastapi==0.109.0
 uvicorn==0.27.0
-python-dotenv==1.0.0
+
+# Database
 supabase>=2.27.0
+
+# Environment and utilities
+python-dotenv==1.0.0
 python-multipart==0.0.6
 aiofiles==23.2.1
+
+# Required by supabase client
 websockets>=15.0.0
+httpx>=0.28.0
+pydantic>=2.0.0
